@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GilbertMusicStore.Models
 {
-	public class SemiAcousticGuitar
+	public class SemiAcousticGuitar : AcousticGuitar
 	{
 		public int PreampId { get; set; }
 		public int PickupId { get; set; }

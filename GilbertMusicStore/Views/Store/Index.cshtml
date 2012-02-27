@@ -4,44 +4,34 @@
 }
 <h2>
 	Index</h2>
-<p>
-	@Html.ActionLink("Create New", "Create")
-</p>
 <table>
 	<tr>
 		<th>
 		</th>
 		<th>
-			Бренд
+			Название
 		</th>
 		<th>
-			Серия
+			Наличие
 		</th>
 		<th>
-			Модель
-		</th>
-		<th>
+			Цена
 		</th>
 	</tr>
 	@foreach (var item in Model)
 	{
 		<tr>
 			<td>
-				
+				<img alt="@item.Model" src="@item.SmallMainImageUrl" />
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem => item.Brand.Name)
+				<div>
+					<strong>@Html.ActionLink(item.Model, "Details", "Store", new { id = item.Id })</strong>
+				</div>
+				@Html.DisplayFor(modelItem => item.Manufacturer.Name)
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem => item.Series)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Model)
-			</td>
-			<td>
-				@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-				@Html.ActionLink("Details", "Details", new { id = item.Id }) |
-				@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+				@Html.DisplayFor(modelItem => item.Price)
 			</td>
 		</tr>
 	}

@@ -37,20 +37,17 @@ namespace GilbertMusicStore.Models
 
 		public string AdditionalInfo { get; set; }
 
-		[Column(TypeName = "image")]
-		public byte[] MainImage { get; set; }
+		public string LargeMainImageUrl { get; set; }
 
-		[Column(TypeName = "image")]
-		public byte[] UserImage1 { get; set; }
+		public string SmallMainImageUrl { get; set; }
 
-		[Column(TypeName = "image")]
-		public byte[] UserImage2 { get; set; }
+		//public string UserImage1Url { get; set; }
 
-		[Column(TypeName = "image")]
-		public byte[] UserImage3 { get; set; }
+		//public string UserImage2Url { get; set; }
 
-		[Column(TypeName = "image")]
-		public byte[] UserImage4 { get; set; }
+		//public string UserImage3Url { get; set; }
+
+		//public string UserImage4Url { get; set; }
 
 		public decimal Price { get; set; }
 
