@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GilbertMusicStore.Models.Guitar>
+﻿@model IEnumerable<GilbertMusicStore.ViewModels.GuitarViewModel>
 @{
 	ViewBag.Title = "Index";
 }
@@ -22,16 +22,20 @@
 	{
 		<tr>
 			<td>
-				<img alt="@item.Model" src="@item.SmallMainImageUrl" />
+				<img alt="@item.Guitar.Model" src="@item.Guitar.SmallMainImageUrl" />
 			</td>
 			<td>
 				<div>
-					<strong>@Html.ActionLink(item.Model, "Details", "Store", new { id = item.Id })</strong>
+					<strong>@Html.ActionLink(item.Guitar.Model, "Details", new { id = item.Guitar.Id })</strong>
+					<br />
+					@Html.DisplayFor(modelItem => item.Description)
 				</div>
-				@Html.DisplayFor(modelItem => item.Manufacturer.Name)
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem => item.Price)
+				@Html.DisplayFor(modelItem => item.Count)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Guitar.Price)
 			</td>
 		</tr>
 	}

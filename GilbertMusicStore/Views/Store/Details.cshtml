@@ -1,7 +1,22 @@
-﻿@model GilbertMusicStore.Models.Guitar
+﻿@model GilbertMusicStore.ViewModels.GuitarViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+@Html.ActionLink("Гитары", "Index", "Store") >>
+@Html.ActionLink("Акустические гитары", "Index", "Store") >>
+@Html.ActionLink("Гитары", "Index", "Store")
+
+<div id="guitarModelName">
+	<h1>@Html.DisplayFor(modelItem => Model.Guitar.Model)</h1>
+</div>
+<div id="guitarDescription">
+	@Html.DisplayFor(modelItem => Model.Description)
+</div>
+<div id="guitarMainImage">
+	<img src="@Model.Guitar.LargeMainImageUrl" alt="@Model.Guitar.Model" />
+</div>
+
+<@*table>
+</table>*@

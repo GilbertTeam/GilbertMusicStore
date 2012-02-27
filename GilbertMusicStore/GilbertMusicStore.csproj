@@ -89,6 +89,28 @@
     <Compile Include="ViewModels\GuitarViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Sample Data\Fender CD-60 Black\Description.txt" />
+    <Content Include="Content\Sample Data\Fender CD-60 Black\MainPhoto.jpg" />
+    <Content Include="Content\Sample Data\Fender CD-60 Black\Reviews.txt" />
+    <Content Include="Content\Sample Data\Fender CD-60 Black\UserPhoto1.jpg" />
+    <Content Include="Content\Sample Data\Fender CD-60 Black\UserPhoto2.jpg" />
+    <Content Include="Content\Sample Data\Fender CD-60 Black\UserPhoto3.jpg" />
+    <Content Include="Content\Sample Data\Fender CD-60 Black\UserPhoto4.jpg" />
+    <Content Include="Content\Sample Data\Gibson Blues King Vintage Sunburst\Description.txt" />
+    <Content Include="Content\Sample Data\Gibson Blues King Vintage Sunburst\MainPhoto.JPG" />
+    <Content Include="Content\Sample Data\Gibson J-185 Antique Natural\MainPhoto.JPG" />
+    <Content Include="Content\Sample Data\Gibson J-185 Vintage Sunburst\MainPhoto.jpg" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Black\Description.txt" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Black\MainPhoto.jpg" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Black\Reviews.txt" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Black\UserPhoto1.jpg" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Natural\Description.txt" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Natural\MainPhoto.jpg" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Natural\Reviews.txt" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Natural\UserPhoto1.jpg" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Natural\UserPhoto2.jpg" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Natural\UserPhoto3.jpg" />
+    <Content Include="Content\Sample Data\Ibanez V72ECE Natural\UserPhoto4.jpg" />
     <Content Include="Content\Sample Data\Yamaha C40 Natural\Description.txt" />
     <Content Include="Content\Sample Data\Yamaha C40 Natural\MainPhoto.jpg" />
     <Content Include="Content\Sample Data\Yamaha C40 Natural\MainSmall.jpg" />
@@ -97,6 +119,13 @@
     <Content Include="Content\Sample Data\Yamaha C40 Natural\UserPhoto2.jpg" />
     <Content Include="Content\Sample Data\Yamaha C40 Natural\UserPhoto3.jpg" />
     <Content Include="Content\Sample Data\Yamaha C40 Natural\UserPhoto4.jpg" />
+    <Content Include="Content\Sample Data\Yamaha F310 Natural\Description.txt" />
+    <Content Include="Content\Sample Data\Yamaha F310 Natural\MainPhoto.jpg" />
+    <Content Include="Content\Sample Data\Yamaha F310 Natural\Reviews.txt" />
+    <Content Include="Content\Sample Data\Yamaha F310 Natural\UserPhoto1.jpg" />
+    <Content Include="Content\Sample Data\Yamaha F310 Natural\UserPhoto2.jpg" />
+    <Content Include="Content\Sample Data\Yamaha F310 Natural\UserPhoto3.jpg" />
+    <Content Include="Content\Sample Data\Yamaha F310 Natural\UserPhoto4.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />

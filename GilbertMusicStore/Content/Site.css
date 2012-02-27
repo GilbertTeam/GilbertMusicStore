@@ -322,3 +322,29 @@ div#title {
 .tri-state {
     width: 6em;
 }
+
+/*----------------------------------------------------------*/
+#guitarModelName h1 {
+	font-size: 18px;
+	color: #C60F19;
+	margin-left: 0.0em;
+	margin-top: 10px;
+}
+
+#guitarDescription {
+	width: 550px;
+	margin-top: 6px;
+	float: left;
+	clear: both;
+	font-size: 11px;
+	color: black;
+}
+
+/*#guitarMainImage
+{
+	float: left;
+	text-align: center;
+	width: 320px;
+	overflow: hidden;
+	position: relative;
+}*/

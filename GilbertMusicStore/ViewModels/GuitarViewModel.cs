@@ -8,6 +8,8 @@ namespace GilbertMusicStore.ViewModels
 {
 	public class GuitarViewModel
 	{
+		#region Properties
+
 		public Guitar Guitar { get; set; }
 
 		public string Description { get; set; }
@@ -15,5 +17,6 @@ namespace GilbertMusicStore.ViewModels
 		public int Count { get; set; }
 
 		public IList<GuitarReview> Reviews { get; set; }
+		#endregion
 	}
 }
