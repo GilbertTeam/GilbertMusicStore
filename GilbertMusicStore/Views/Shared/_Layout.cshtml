@@ -11,14 +11,14 @@
     <div class="page">
         <header>
             <div id="title">
-                <h1>My MVC Application</h1>
+                <h1>GilbertMusicStore</h1>
             </div>
             <div id="logindisplay">
                 @Html.Partial("_LogOnPartial")
             </div>
             <nav>
                 <ul id="menu">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="first">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                 </ul>
             </nav>
@@ -26,8 +26,9 @@
         <section id="main">
             @RenderBody()
         </section>
-        <footer>
-        </footer>
+		<footer>
+			This page was produced using APS.Net MVC3
+		</footer>
     </div>
 </body>
 </html>

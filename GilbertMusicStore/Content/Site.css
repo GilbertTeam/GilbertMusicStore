@@ -4,30 +4,30 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 body {
-    background-color: #5c87b2;
+    background-color: #C4CF69;
     font-size: .85em;
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    font-family: Georgia, Georgia, serif;
     margin: 0;
     padding: 0;
-    color: #696969;
+    color: #524B21;
 }
 
 a:link {
-    color: #034af3;
+    color: #524B21;
     text-decoration: underline;
 }
 
 a:visited {
-    color: #505abc;
+    color: #C4CF69;
 }
 
 a:hover {
-    color: #1d60ff;
+    color: #524B21;
     text-decoration: none;
 }
 
 a:active {
-    color: #12eb87;
+    color: #524B21;
 }
 
 p, ul {
@@ -46,7 +46,7 @@ section {
 ----------------------------------------------------------*/
 h1, h2, h3, h4, h5, h6 {
     font-size: 1.5em;
-    color: #000;
+    color: #524B21;
 }
 
 h1 {
@@ -93,7 +93,7 @@ header h1, #header h1 {
     font-weight: bold;
     padding: 5px 0;
     margin: 0;
-    color: #fff;
+    color: #524B21;
     border: none;
     line-height: 2em;
     font-size: 32px !important;
@@ -102,7 +102,8 @@ header h1, #header h1 {
 
 #main {
     padding: 30px 30px 15px 30px;
-    background-color: #fff;
+    background-color: #F9FF82;
+    position: relative;
     border-radius: 4px 0 0 0;
     -webkit-border-radius: 4px 0 0 0;
     -moz-border-radius: 4px 0 0 0;
@@ -110,10 +111,10 @@ header h1, #header h1 {
 
 footer, 
 #footer {
-    background-color: #fff;
+    background-color: #F9FF82;
     color: #999;
     padding: 10px 0;
-    text-align: center;
+    text-align: right;
     line-height: normal;
     margin: 0 0 30px 0;
     font-size: .9em;
@@ -122,10 +123,36 @@ footer,
     -moz-border-radius: 0 0 4px 4px;
 }
 
+/*Table section
+----------------------------------------------------------*/
+
+.tableView
+{
+	
+}
+
+/* LEFT TAB MENU   
+----------------------------------------------------------*/
+
+.navMenu
+{
+	border-right: 5px groove #F55600;
+	top: 0%;
+	width: 20%;
+	float: left;
+	margin-right: 5%;
+}
+
+ul#navUl
+{
+	
+}
+
+
 /* TAB MENU   
 ----------------------------------------------------------*/
 ul#menu {
-    border-bottom: 1px #5C87B2 solid;
+    border-bottom: 1px #F55600 solid;
     padding: 0 0 2px;
     position: relative;
     margin: 0;
@@ -142,7 +169,7 @@ ul#menu li#greeting {
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
-    color: #fff;
+    color: #524B21;
 }
 
 ul#menu li a {
@@ -150,20 +177,20 @@ ul#menu li a {
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
-    background-color: #e8eef4;
-    color: #034af3;
+    background-color: #F9FF82;
+    color: #524B21;
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
 }
 
 ul#menu li a:hover {
-    background-color: #fff;
+    background-color: #999646;
     text-decoration: none;
 }
 
 ul#menu li a:active {
-    background-color: #a6e2a6;
+    background-color: #F9FF82;
     text-decoration: none;
 }
 

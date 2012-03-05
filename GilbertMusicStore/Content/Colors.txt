@@ -1,0 +1,7 @@
+﻿Используемые цвета
+http://kuler.adobe.com/#themeID/1752488
+#F9FF82
+#C4CF69
+#999646 //for hovering
+#524B21
+#F55600
