@@ -17,6 +17,7 @@ namespace GilbertMusicStore.Models
 		public DbSet<Color> Colors { get; set; }
 		public DbSet<Manufacturer> Manufacturers { get; set; }
 		public DbSet<GuitarReview> GuitarReviews { get; set; }
+		public DbSet<News> News { get; set; }
 
 		public MusicStoreEntities()
 		{
