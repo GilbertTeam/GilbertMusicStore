@@ -90,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Colors.txt" />
-    <Content Include="Content\MusicStoreSite.css" />
+    <Content Include="Content\Images\HomeImage.png" />
     <Content Include="Content\Sample Data\Fender CD-60 Black\Description.txt" />
     <Content Include="Content\Sample Data\Fender CD-60 Black\MainPhoto.jpg" />
     <Content Include="Content\Sample Data\Fender CD-60 Black\Reviews.txt" />
