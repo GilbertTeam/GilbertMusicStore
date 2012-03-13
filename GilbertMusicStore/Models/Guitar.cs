@@ -14,7 +14,7 @@ namespace GilbertMusicStore.Models
 		[ScaffoldColumn(false)]
 		public int BrandId { get; set; }
 
-		[Required(ErrorMessage="Обязательно!")]
+		[Required]
 		[MinLength(5)]
 		[MaxLength(50)]
 		public string Series { get; set; }
