@@ -8,28 +8,40 @@ namespace GilbertMusicStore.Models
 {
 	public abstract class Guitar
 	{
+		[ScaffoldColumn(false)]
 		public int Id { get; set; }
 
+		[ScaffoldColumn(false)]
 		public int BrandId { get; set; }
 
-		public virtual Brand Brand { get; set; }
-
+		[Required(ErrorMessage="Обязательно!")]
+		[MinLength(5)]
+		[MaxLength(50)]
 		public string Series { get; set; }
 
+		[Required]
+		[MaxLength(50)]
 		public string Model { get; set; }
 
+		[Range(15, 25)]
 		public int FretsCount { get; set; }
 
+		[Range(650.0f, 690.0f)]
 		public float Scale { get; set; }
 
+		[ScaffoldColumn(false)]
 		public int BodyWoodId { get; set; }
 
+		[ScaffoldColumn(false)]
 		public int FretboardWoodId { get; set; }
 
+		[ScaffoldColumn(false)]
 		public int FingerboardWoodId { get; set; }
 
+		[ScaffoldColumn(false)]
 		public int ColorId { get; set; }
 
+		[ScaffoldColumn(false)]
 		public int ManufacturerId { get; set; }
 
 		[MaxLength]
@@ -49,9 +61,15 @@ namespace GilbertMusicStore.Models
 
 		//public string UserImage4Url { get; set; }
 
+		[Required]
+		[DataType(DataType.Currency)]
 		public decimal Price { get; set; }
 
 		#region Navigation Properties
+
+		public virtual Brand Brand { get; set; }
+
+		public Manufacturer Manufacturer { get; set; }
 
 		public Wood BodyWood { get; set; }
 
@@ -60,8 +78,6 @@ namespace GilbertMusicStore.Models
 		public Wood FingerboardWood { get; set; }
 
 		public Color Color { get; set; }
-
-		public Manufacturer Manufacturer { get; set; }
 		#endregion
 	}
 }

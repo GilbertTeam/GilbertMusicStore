@@ -1,0 +1,61 @@
+﻿@model IEnumerable<GilbertMusicStore.Models.Guitar>
+@{
+	ViewBag.Title = "Index";
+}
+<h2>
+	Index</h2>
+<p>
+	@Html.ActionLink("Create New", "Create")
+</p>
+<table>
+	<tr>
+		<th>
+			Brand
+		</th>
+		<th>
+			Series
+		</th>
+		<th>
+			Model
+		</th>
+		<th>
+			Manufacturer
+		</th>
+		<th>
+			Color
+		</th>
+		<th>
+			Price
+		</th>
+		<th>
+		</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Brand.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Series)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Model)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Manufacturer.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Color.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Price)
+			</td>
+			<td>
+				@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+				@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+				@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+			</td>
+		</tr>
+	}
+</table>
