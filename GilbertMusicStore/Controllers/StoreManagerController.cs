@@ -16,28 +16,9 @@ namespace GilbertMusicStore.Controllers
 		private MusicStoreEntities _db = new MusicStoreEntities();
 		#endregion
 
-		//
-		// GET: /StoreAdmin/
+		#region Methods
 
-		public ViewResult Index()
-		{
-			var guitars = _db.Guitars.Include(g => g.Brand).Include(g => g.Color).Include(g => g.Manufacturer);
-			return View(guitars.ToList());
-		}
-
-		//
-		// GET: /StoreAdmin/Details/5
-
-		public ViewResult Details(int id)
-		{
-			Guitar guitar = _db.Guitars.Find(id);
-			return View(guitar);
-		}
-
-		//
-		// GET: /StoreAdmin/Create
-
-		public ActionResult Create()
+		private void FillGuitarViewBag()
 		{
 			ViewBag.BrandId = new SelectList(_db.Brands, "Id", "Name");
 			ViewBag.ColorId = new SelectList(_db.Colors, "Id", "Name");
@@ -45,31 +26,116 @@ namespace GilbertMusicStore.Controllers
 			ViewBag.BodyWoodId = new SelectList(_db.Woods, "WoodId", "Name");
 			ViewBag.FretboardWoodId = new SelectList(_db.Woods, "WoodId", "Name");
 			ViewBag.FingerboardWoodId = new SelectList(_db.Woods, "WoodId", "Name");
+		}
+
+		private void FillAcousticGuitarViewBag()
+		{
+			FillGuitarViewBag();
+
+			ViewBag.BodyTypeId = new SelectList(_db.BodyTypes, "Id", "Name");
+		}
+
+		private void FillSemiAcousticGuitarViewBag()
+		{
+			FillAcousticGuitarViewBag();
+
+			ViewBag.PreampId = new SelectList(_db.Preamps, "Id", "Name");
+			ViewBag.PickupId = new SelectList(_db.Pickups, "Id", "Name");
+		}
+
+		private void FillElectricGuitarViewBag()
+		{
+			FillGuitarViewBag();
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			_db.Dispose();
+			base.Dispose(disposing);
+		}
+
+		public ViewResult Index()
+		{
+			var guitars =
+				_db.Guitars
+				.Include(g => g.Brand)
+				.Include(g => g.Color)
+				.Include(g => g.Manufacturer);
+
+			return View(guitars.ToList());
+		}
+
+		public ViewResult Details(int id)
+		{
+			Guitar guitar = _db.Guitars.Find(id);
+			return View(guitar);
+		}
+
+		public ActionResult CreateAcousticGuitar()
+		{
+			FillAcousticGuitarViewBag();
 
 			return View();
 		}
 
-		//
-		// POST: /StoreAdmin/Create
-
 		[HttpPost]
-		public ActionResult Create(Guitar guitar)
+		public ActionResult CreateAcousticGuitar(AcousticGuitar acousticGuitar)
 		{
 			if (ModelState.IsValid)
 			{
-				_db.Guitars.Add(guitar);
+				_db.Guitars.Add(acousticGuitar);
 				_db.SaveChanges();
 				return RedirectToAction("Index");
 			}
 
-			ViewBag.BrandId = new SelectList(_db.Brands, "Id", "Name", guitar.BrandId);
-			ViewBag.ColorId = new SelectList(_db.Colors, "Id", "Name", guitar.ColorId);
-			ViewBag.ManufacturerId = new SelectList(_db.Manufacturers, "ManufacturerId", "Name", guitar.ManufacturerId);
-			return View(guitar);
+			FillAcousticGuitarViewBag();
+
+			return View(acousticGuitar);
 		}
 
-		//
-		// GET: /StoreAdmin/Edit/5
+		public ActionResult CreateSemiAcousticGuitar()
+		{
+			FillSemiAcousticGuitarViewBag();
+
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult CreateSemiAcousticGuitar(SemiAcousticGuitar semiAcousticGuitar)
+		{
+			if (ModelState.IsValid)
+			{
+				_db.Guitars.Add(semiAcousticGuitar);
+				_db.SaveChanges();
+				return RedirectToAction("Index");
+			}
+
+			FillSemiAcousticGuitarViewBag();
+
+			return View(semiAcousticGuitar);
+		}
+
+		public ActionResult CreateElectricGuitar()
+		{
+			FillElectricGuitarViewBag();
+
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult CreateElectricGuitar(ElectricGuitar electricGuitar)
+		{
+			if (ModelState.IsValid)
+			{
+				_db.Guitars.Add(electricGuitar);
+				_db.SaveChanges();
+				return RedirectToAction("Index");
+			}
+
+			FillElectricGuitarViewBag();
+
+			return View(electricGuitar);
+		}
 
 		public ActionResult Edit(int id)
 		{
@@ -79,9 +145,6 @@ namespace GilbertMusicStore.Controllers
 			ViewBag.ManufacturerId = new SelectList(_db.Manufacturers, "ManufacturerId", "Name", guitar.ManufacturerId);
 			return View(guitar);
 		}
-
-		//
-		// POST: /StoreAdmin/Edit/5
 
 		[HttpPost]
 		public ActionResult Edit(Guitar guitar)
@@ -98,17 +161,11 @@ namespace GilbertMusicStore.Controllers
 			return View(guitar);
 		}
 
-		//
-		// GET: /StoreAdmin/Delete/5
-
 		public ActionResult Delete(int id)
 		{
 			Guitar guitar = _db.Guitars.Find(id);
 			return View(guitar);
 		}
-
-		//
-		// POST: /StoreAdmin/Delete/5
 
 		[HttpPost, ActionName("Delete")]
 		public ActionResult DeleteConfirmed(int id)
@@ -118,11 +175,6 @@ namespace GilbertMusicStore.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
-
-		protected override void Dispose(bool disposing)
-		{
-			_db.Dispose();
-			base.Dispose(disposing);
-		}
+		#endregion
 	}
 }

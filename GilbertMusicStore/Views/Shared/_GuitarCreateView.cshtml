@@ -1,0 +1,93 @@
+﻿@model GilbertMusicStore.Models.Guitar
+
+<div class="editor-label">
+	@Html.LabelFor(model => model.BrandId, "Brand")
+</div>
+<div class="editor-field">
+	@Html.DropDownList("BrandId", String.Empty)
+	@Html.ValidationMessageFor(model => model.BrandId)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.Series)
+</div>
+<div class="editor-field">
+	@Html.EditorFor(model => model.Series)
+	@Html.ValidationMessageFor(model => model.Series)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.Model)
+</div>
+<div class="editor-field">
+	@Html.EditorFor(model => model.Model)
+	@Html.ValidationMessageFor(model => model.Model)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.FretsCount)
+</div>
+<div class="editor-field">
+	@Html.EditorFor(model => model.FretsCount)
+	@Html.ValidationMessageFor(model => model.FretsCount)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.Scale)
+</div>
+<div class="editor-field">
+	@Html.EditorFor(model => model.Scale)
+	@Html.ValidationMessageFor(model => model.Scale)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.BodyWoodId, "Body Wood")
+</div>
+<div class="editor-field">
+	@Html.DropDownList("BodyWoodId", String.Empty)
+	@Html.ValidationMessageFor(model => model.BrandId)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.FretboardWoodId, "Fretboard Wood")
+</div>
+<div class="editor-field">
+	@Html.DropDownList("FretboardWoodId", String.Empty)
+	@Html.ValidationMessageFor(model => model.FretboardWoodId)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.FingerboardWoodId, "Fingerboard Wood")
+</div>
+<div class="editor-field">
+	@Html.DropDownList("FingerboardWoodId", String.Empty)
+	@Html.ValidationMessageFor(model => model.FingerboardWoodId)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.ColorId, "Color")
+</div>
+<div class="editor-field">
+	@Html.DropDownList("ColorId", String.Empty)
+	@Html.ValidationMessageFor(model => model.ColorId)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.ManufacturerId, "Manufacturer")
+</div>
+<div class="editor-field">
+	@Html.DropDownList("ManufacturerId", String.Empty)
+	@Html.ValidationMessageFor(model => model.ManufacturerId)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.Description)
+</div>
+<div class="editor-field">
+	@Html.EditorFor(model => model.Description)
+	@Html.ValidationMessageFor(model => model.Description)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.AdditionalInfo)
+</div>
+<div class="editor-field">
+	@Html.EditorFor(model => model.AdditionalInfo)
+	@Html.ValidationMessageFor(model => model.AdditionalInfo)
+</div>
+<div class="editor-label">
+	@Html.LabelFor(model => model.Price)
+</div>
+<div class="editor-field">
+	@Html.EditorFor(model => model.Price)
+	@Html.ValidationMessageFor(model => model.Price)
+</div>
