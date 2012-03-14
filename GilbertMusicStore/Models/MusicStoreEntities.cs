@@ -18,6 +18,9 @@ namespace GilbertMusicStore.Models
 		public DbSet<Manufacturer> Manufacturers { get; set; }
 		public DbSet<GuitarReview> GuitarReviews { get; set; }
 		public DbSet<News> News { get; set; }
+		public DbSet<Cart> Carts { get; set; }
+		public DbSet<Order> Orders { get; set; }
+		public DbSet<OrderDetail> OrderDetails { get; set; }
 
 		public MusicStoreEntities()
 		{

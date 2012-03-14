@@ -75,6 +75,7 @@
     <Compile Include="Models\AcousticGuitar.cs" />
     <Compile Include="Models\BodyType.cs" />
     <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Color.cs" />
     <Compile Include="Models\ElectricGuitar.cs" />
     <Compile Include="Models\Guitar.cs" />
@@ -83,9 +84,12 @@
     <Compile Include="Models\MusicStoreEntities.cs" />
     <Compile Include="Models\MusicStoreIntializer.cs" />
     <Compile Include="Models\News.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Pickup.cs" />
     <Compile Include="Models\Preamp.cs" />
     <Compile Include="Models\SemiAcousticGuitar.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\Wood.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
