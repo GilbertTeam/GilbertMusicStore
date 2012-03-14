@@ -25,6 +25,8 @@ namespace GilbertMusicStore.Models
 		public MusicStoreEntities()
 		{
 			Configuration.ValidateOnSaveEnabled = false;
+			//Configuration.LazyLoadingEnabled = false;
+			//Configuration.ProxyCreationEnabled = false;
 		}
 	}
 }

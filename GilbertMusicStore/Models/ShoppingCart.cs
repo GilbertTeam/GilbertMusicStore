@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Objects;
+using System.Data.Entity.Infrastructure;
 
 namespace GilbertMusicStore.Models
 {
@@ -18,11 +20,23 @@ namespace GilbertMusicStore.Models
 		#region Properties
 
 		private string ShoppingCartId { get; set; }
+		#endregion
+
+		#region Constructors
+
+		protected ShoppingCart()
+		{
+
+		}
+		#endregion
+
+		#region Methods
 
 		public static ShoppingCart GetCart(HttpContextBase context)
 		{
+			string cartId = GetCartId(context);
 			ShoppingCart shoppingCart = new ShoppingCart();
-			shoppingCart.ShoppingCartId = shoppingCart.GetCartId(context);
+			shoppingCart.ShoppingCartId = cartId;
 
 			return shoppingCart;
 		}
@@ -31,11 +45,8 @@ namespace GilbertMusicStore.Models
 		{
 			return GetCart(controller.HttpContext);
 		}
-		#endregion
 
-		#region Methods
-
-		public string GetCartId(HttpContextBase context)
+		public static string GetCartId(HttpContextBase context)
 		{
 			string cartId = null;
 
@@ -113,9 +124,9 @@ namespace GilbertMusicStore.Models
 			return itemCount;
 		}
 
-		public IEnumerable<Cart> GetCarts()
+		public IList<Cart> GetCarts()
 		{
-			return _db.Carts.Where(c => c.Tag == ShoppingCartId);
+			return _db.Carts.Where(c => c.Tag == ShoppingCartId).ToList();
 		}
 
 		public void EmptyCart()
@@ -151,7 +162,7 @@ namespace GilbertMusicStore.Models
 		public int CreateOrder(Order order)
 		{
 			decimal orderTotal = 0;
-			var carts = GetCarts().ToList();
+			var carts = GetCarts();
 
 			foreach (var cart in carts)
 			{
