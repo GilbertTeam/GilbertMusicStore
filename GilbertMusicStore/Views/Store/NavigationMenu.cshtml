@@ -1,0 +1,11 @@
+﻿@model IEnumerable<GilbertMusicStore.ViewModels.BrandInfo>
+
+<div class="navigationMenu">
+	<h2>По брендам:</h2>
+	<ul class="brandCategory">
+		@foreach (var item in Model)
+		{
+			<li>@Html.ActionLink(item.Brand.Name + "(" + item.Count + ")", "Index", "Store", new { brandId = item.Brand.Id })</li>
+		}
+	</ul>
+</div>

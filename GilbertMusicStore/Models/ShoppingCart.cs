@@ -12,9 +12,9 @@ namespace GilbertMusicStore.Models
 	{
 		#region Fields
 
-		private const string SessionKey = "CartId";
+		internal const string SessionKey = "CartId";
 
-		private MusicStoreEntities _db = new MusicStoreEntities();
+		private MusicStoreContext _db = new MusicStoreContext();
 		#endregion
 
 		#region Properties
@@ -48,27 +48,21 @@ namespace GilbertMusicStore.Models
 
 		public static string GetCartId(HttpContextBase context)
 		{
-			string cartId = null;
-
 			if (context.Session[SessionKey] == null)
 			{
-				string userName = context.User.Identity.Name;
-
-				if (!string.IsNullOrWhiteSpace(userName))
+				if (!string.IsNullOrWhiteSpace(context.User.Identity.Name))
 				{
-					cartId = userName;
-					context.Session[SessionKey] = cartId;
+					context.Session[SessionKey] = context.User.Identity.Name;
 				}
 				else
 				{
 					Guid tempCartId = Guid.NewGuid();
 
-					cartId = tempCartId.ToString();
-					context.Session[SessionKey] = cartId;
+					context.Session[SessionKey] = tempCartId.ToString();
 				}
 			}
 
-			return cartId;
+			return context.Session[SessionKey].ToString();
 		}
 
 		public void AddToCart(Guitar guitar)
@@ -82,7 +76,7 @@ namespace GilbertMusicStore.Models
 			{
 				cart = new Cart
 				{
-					Guitar = guitar,
+					GuitarId = guitar.Id,
 					Tag = ShoppingCartId,
 					Count = 1,
 					DateCreated = DateTime.Now
@@ -187,7 +181,7 @@ namespace GilbertMusicStore.Models
 			return order.Id;
 		}
 
-		public void MigrateCart(string userName)
+		public void Checkout(string userName)
 		{
 			var carts = GetCarts();
 
