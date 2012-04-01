@@ -7,10 +7,11 @@ using System.Drawing;
 using System.IO;
 using System.Data.Entity.Validation;
 using System.Web.Helpers;
+using System.Globalization;
 
 namespace GilbertMusicStore.Models
 {
-	public class MusicStoreInitializer : DropCreateDatabaseAlways<MusicStoreEntities>
+	public class MusicStoreInitializer : DropCreateDatabaseAlways<MusicStoreContext>
 	{
 		#region Fields
 
@@ -122,7 +123,44 @@ namespace GilbertMusicStore.Models
 			//}
 		}
 
-		protected override void Seed(MusicStoreEntities context)
+		private void AddNews(MusicStoreContext context)
+		{
+			new List<News>
+			{
+				new News
+				{
+					Date = DateTime.Parse("01.04.12", CultureInfo.InvariantCulture),
+					Title = "В МузТорге - первая партия звукоснимателей DiMarzio!",
+					Content = "На склад компании МузТорг поступила первая партия звукоснимателей DiMarzio!\nКомпания DiMarzio является одним из лидеров мировой музыкальной индустрии. Легендарные звукосниматели DiMarzio завоевали признание таких звезд как Джо Сатриани, Стив Вай, Пол Гилберт, Ингви Мальмстин, Джон Петруччи."
+				},
+				new News
+				{
+					Date = DateTime.Parse("01.04.12", CultureInfo.InvariantCulture),
+					Title = "Напольный гитарный тюнер TC Electronic PolyTune Mini - уже в МузТорге!",
+					Content = "В продажу поступил напольный гитарный тюнер TC Electronic PolyTune Mini!\nPolyTune Mini — самый компактный в мире полифонический тюнер. Он устанавливается в педалборд, а в таких случаях размер нередко имеет значение. Ведь чем меньше места занимает тюнер, тем больше педалей уместится в оставшемся пространстве педалборда."
+				},
+				new News
+				{
+					Date = DateTime.Parse("01.04.12", CultureInfo.InvariantCulture),
+					Title = "В МузТорге - первая партия звукоснимателей DiMarzio!",
+					Content = "На склад компании МузТорг поступила первая партия звукоснимателей DiMarzio!\nКомпания DiMarzio является одним из лидеров мировой музыкальной индустрии. Легендарные звукосниматели DiMarzio завоевали признание таких звезд как Джо Сатриани, Стив Вай, Пол Гилберт, Ингви Мальмстин, Джон Петруччи."
+				},
+				new News
+				{
+					Date = DateTime.Parse("01.04.12", CultureInfo.InvariantCulture),
+					Title = "В МузТорге - первая партия звукоснимателей DiMarzio!",
+					Content = "На склад компании МузТорг поступила первая партия звукоснимателей DiMarzio!\nКомпания DiMarzio является одним из лидеров мировой музыкальной индустрии. Легендарные звукосниматели DiMarzio завоевали признание таких звезд как Джо Сатриани, Стив Вай, Пол Гилберт, Ингви Мальмстин, Джон Петруччи."
+				},
+				new News
+				{
+					Date = DateTime.Parse("01.04.12", CultureInfo.InvariantCulture),
+					Title = "В МузТорге - первая партия звукоснимателей DiMarzio!",
+					Content = "На склад компании МузТорг поступила первая партия звукоснимателей DiMarzio!\nКомпания DiMarzio является одним из лидеров мировой музыкальной индустрии. Легендарные звукосниматели DiMarzio завоевали признание таких звезд как Джо Сатриани, Стив Вай, Пол Гилберт, Ингви Мальмстин, Джон Петруччи."
+				}
+			}.ForEach(n => context.News.Add(n));
+		}
+
+		private void AddGuitars(MusicStoreContext context)
 		{
 			BodyType dreadnoughtBodyType = context.BodyTypes.Add(new BodyType { Name = "Dreadnought" });
 			BodyType jumboBodyType = context.BodyTypes.Add(new BodyType { Name = "Jumbo" });
@@ -418,6 +456,12 @@ namespace GilbertMusicStore.Models
 					SmallMainImageUrl = virtualSmallMainImageFile,
 					Price = 7965,
 				});
+		}
+
+		protected override void Seed(MusicStoreContext context)
+		{
+			AddNews(context);
+			AddGuitars(context);
 		}
 		#endregion
 	}

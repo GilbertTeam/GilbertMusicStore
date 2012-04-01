@@ -14,9 +14,12 @@
 <div id="guitarDescription">
 	@Html.DisplayFor(modelItem => Model.Description)
 </div>
-<div id="guitarMainImage">
+@*<div id="guitarMainImage">
 	<img src="@Model.Guitar.LargeMainImageUrl" alt="@Model.Guitar.Model" />
-</div>
+</div>*@
+<p class="button">
+	@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.Guitar.Id })
+</p>
 
 <table class="guitarDescriptionTable">
 	<tbody>

@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace GilbertMusicStore.Models
 {
-	public class MusicStoreEntities : DbContext
+	public class MusicStoreContext : DbContext
 	{
 		public DbSet<Brand> Brands { get; set; }
 		public DbSet<Guitar> Guitars { get; set; }
@@ -22,7 +22,7 @@ namespace GilbertMusicStore.Models
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<OrderDetail> OrderDetails { get; set; }
 
-		public MusicStoreEntities()
+		public MusicStoreContext()
 		{
 			Configuration.ValidateOnSaveEnabled = false;
 			//Configuration.LazyLoadingEnabled = false;

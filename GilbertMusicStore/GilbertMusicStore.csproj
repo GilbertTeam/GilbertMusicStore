@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -38,6 +38,12 @@
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.14\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.3.14\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -65,10 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AcousticGuitarController.cs" />
-    <Compile Include="Controllers\ElectricGuitarController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SemiAcousticGuitatController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreManagerController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
@@ -85,7 +89,7 @@
     <Compile Include="Models\Guitar.cs" />
     <Compile Include="Models\GuitarReview.cs" />
     <Compile Include="Models\Manufacturer.cs" />
-    <Compile Include="Models\MusicStoreEntities.cs" />
+    <Compile Include="Models\MusicStoreContext.cs" />
     <Compile Include="Models\MusicStoreIntializer.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Order.cs" />
@@ -102,12 +106,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\GuitarViewModel.cs" />
+    <Compile Include="ViewModels\NavigationMenuViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Colors.txt" />
     <Content Include="Content\Images\HomeImage.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Sample Data\Fender CD-60 Black\Description.txt" />
     <Content Include="Content\Sample Data\Fender CD-60 Black\MainPhoto.jpg" />
     <Content Include="Content\Sample Data\Fender CD-60 Black\Reviews.txt" />
@@ -186,6 +192,8 @@
     <Content Include="Scripts\localization\messages_ru.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\PagedList\PagedList.Mvc.js" />
+    <Content Include="Scripts\PagedList\PagedList.Mvc.Template.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -209,8 +217,7 @@
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -264,56 +271,20 @@
     <Content Include="Views\ShoppingCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Account\Admin.cshtml" />
+    <Content Include="Views\Checkout\AddressAndPayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\AcousticGuitar\Index.cshtml" />
+    <Content Include="Views\Checkout\Complete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\AcousticGuitar\Details.cshtml" />
+    <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\AcousticGuitar\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\AcousticGuitar\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\AcousticGuitar\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\SemiAcousticGuitar\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\SemiAcousticGuitar\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\SemiAcousticGuitar\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\SemiAcousticGuitar\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\SemiAcousticGuitar\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ElectricGuitar\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ElectricGuitar\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ElectricGuitar\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ElectricGuitar\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ElectricGuitar\Delete.cshtml" />
+    <Content Include="Views\Store\NavigationMenu.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

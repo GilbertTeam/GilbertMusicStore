@@ -9,11 +9,12 @@ using GilbertMusicStore.Models;
 
 namespace GilbertMusicStore.Controllers
 {
+	[Authorize(Roles = "Administrator")]
 	public class StoreManagerController : Controller
 	{
 		#region Fields
 
-		private MusicStoreEntities _db = new MusicStoreEntities();
+		private MusicStoreContext _db = new MusicStoreContext();
 		#endregion
 
 		#region Methods

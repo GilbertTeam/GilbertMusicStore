@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using System.Linq;
+﻿using System.Linq;
+using System.Web.Mvc;
 using GilbertMusicStore.Models;
 using GilbertMusicStore.ViewModels;
 
@@ -9,7 +9,7 @@ namespace GilbertMusicStore.Controllers
 	{
 		#region Fields
 
-		private readonly MusicStoreEntities _db = new MusicStoreEntities();
+		private readonly MusicStoreContext _db = new MusicStoreContext();
 		#endregion
 
 		#region Methods

@@ -59,5 +59,32 @@ namespace GilbertMusicStore.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неверные имя пользователя или пароль..
+        /// </summary>
+        internal static string AuthorizationError {
+            get {
+                return ResourceManager.GetString("AuthorizationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Данное поле является обязательным..
+        /// </summary>
+        internal static string RequiredError {
+            get {
+                return ResourceManager.GetString("RequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string StringLengthError {
+            get {
+                return ResourceManager.GetString("StringLengthError", resourceCulture);
+            }
+        }
     }
 }
