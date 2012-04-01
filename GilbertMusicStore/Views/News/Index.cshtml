@@ -4,19 +4,21 @@
 }
 <h2>Новости Gilbert Music Store</h2>
 <img src="../../Content/Images/Rss.gif" alt="RSS новости" title="RSS новости" align="right">
-<table>
+<div class="newsTableContainer">
+<table class="newsTable">
 	<tbody>
 		@foreach (var item in Model)
 		{
 			<tr>
 				<td>
 					<div class="news">
-						<div class="newsTitle">@item.Title</div>
-						<div class="newsDate">@item.Date</div>
-						<div class="newsContent">@item.Content</div>
+						<h3>@item.Title</h3>
+						<h4>@item.Date</h4>
+						<section class="newsContent">@item.Content</section>
 					</div>
 				</td>
 			</tr>
 		}
 	</tbody>
 </table>
+</div>

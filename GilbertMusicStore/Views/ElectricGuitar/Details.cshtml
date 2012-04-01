@@ -1,0 +1,60 @@
+﻿@model GilbertMusicStore.Models.ElectricGuitar
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ElectricGuitar</legend>
+
+    <div class="display-label">Series</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Series)
+    </div>
+
+    <div class="display-label">Model</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Model)
+    </div>
+
+    <div class="display-label">FretsCount</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FretsCount)
+    </div>
+
+    <div class="display-label">Scale</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Scale)
+    </div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">AdditionalInfo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdditionalInfo)
+    </div>
+
+    <div class="display-label">LargeMainImageUrl</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LargeMainImageUrl)
+    </div>
+
+    <div class="display-label">SmallMainImageUrl</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SmallMainImageUrl)
+    </div>
+
+    <div class="display-label">Price</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

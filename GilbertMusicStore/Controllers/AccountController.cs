@@ -84,7 +84,7 @@ namespace GilbertMusicStore.Controllers
 					}
 					else
 					{
-						return RedirectToAction("Index", "Home");
+						return RedirectToAction("Index", "Store");
 					}
 				}
 				else
@@ -100,7 +100,7 @@ namespace GilbertMusicStore.Controllers
 		{
 			FormsAuthentication.SignOut();
 
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("Index", "Store");
 		}
 
 		public ActionResult Register()
@@ -190,9 +190,6 @@ namespace GilbertMusicStore.Controllers
 			return View();
 		}
 
-		
-
-		
 		#endregion
 	}
 }

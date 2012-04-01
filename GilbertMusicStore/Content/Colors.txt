@@ -5,3 +5,10 @@ http://kuler.adobe.com/#themeID/1752488
 #999646 //for hovering
 #524B21
 #F55600
+
+http://colorschemedesigner.com/#2y51Z7F--w0w0
+E2FFDD
+E7FFD1
+CAFFC2
+A2BF9D
+4DA63F

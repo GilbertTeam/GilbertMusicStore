@@ -1,0 +1,78 @@
+﻿@model GilbertMusicStore.Models.SemiAcousticGuitar
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>SemiAcousticGuitar</legend>
+
+    <div class="display-label">Preamp</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Preamp.Name)
+    </div>
+
+    <div class="display-label">Pickup</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pickup.Name)
+    </div>
+
+    <div class="display-label">IsClassical</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsClassical)
+    </div>
+
+    <div class="display-label">Series</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Series)
+    </div>
+
+    <div class="display-label">Model</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Model)
+    </div>
+
+    <div class="display-label">FretsCount</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FretsCount)
+    </div>
+
+    <div class="display-label">Scale</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Scale)
+    </div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">AdditionalInfo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdditionalInfo)
+    </div>
+
+    <div class="display-label">LargeMainImageUrl</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LargeMainImageUrl)
+    </div>
+
+    <div class="display-label">SmallMainImageUrl</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SmallMainImageUrl)
+    </div>
+
+    <div class="display-label">Price</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
