@@ -28,5 +28,11 @@ namespace GilbertMusicStore.Models
 			//Configuration.LazyLoadingEnabled = false;
 			//Configuration.ProxyCreationEnabled = false;
 		}
+
+        public DbSet<AcousticGuitar> AcousticGuitars { get; set; }
+
+        public DbSet<SemiAcousticGuitar> SemiAcousticGuitars { get; set; }
+
+        public DbSet<ElectricGuitar> ElectricGuitars { get; set; }
 	}
 }

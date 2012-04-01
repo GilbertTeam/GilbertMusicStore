@@ -62,7 +62,7 @@ namespace GilbertMusicStore.Controllers
 				.Include(g => g.Brand)
 				.Include(g => g.Color)
 				.Include(g => g.Manufacturer);
-
+            var list = guitars.ToList();
 			return View(guitars.ToList());
 		}
 
