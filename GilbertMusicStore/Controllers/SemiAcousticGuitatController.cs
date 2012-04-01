@@ -11,7 +11,7 @@ namespace GilbertMusicStore.Controllers
 { 
     public class SemiAcousticGuitarController : Controller
     {
-        private MusicStoreEntities db = new MusicStoreEntities();
+        private MusicStoreContext db = new MusicStoreContext();
 
         //
         // GET: /SemiAcousticGuitar/

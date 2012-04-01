@@ -13,7 +13,6 @@ namespace GilbertMusicStore.Controllers
 	{
 		#region Methods
 
-<<<<<<< HEAD
         //
         // GET: /Account/Admin
 
@@ -27,7 +26,7 @@ namespace GilbertMusicStore.Controllers
 
 		//
 		// GET: /Account/LogOn
-=======
+
 		#region Status Codes
 
 		private static string ErrorCodeToString(MembershipCreateStatus createStatus)
