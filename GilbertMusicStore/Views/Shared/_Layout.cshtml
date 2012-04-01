@@ -15,6 +15,12 @@
             </div>
             <div id="logindisplay">
                 @Html.Partial("_LogOnPartial")
+                 @* переверстать!!!*@
+                @if (Request.IsAuthenticated && this.Context.User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("В админку", "admin", "account")
+                }
+                @* переверстать!!!*@
             </div>
             <nav>
                 <ul id="menu">

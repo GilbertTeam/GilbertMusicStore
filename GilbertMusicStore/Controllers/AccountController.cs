@@ -12,6 +12,17 @@ namespace GilbertMusicStore.Controllers
 	public class AccountController : Controller
 	{
 
+        //
+        // GET: /Account/Admin
+
+        public ActionResult Admin()
+        {
+            if (Request.IsAuthenticated && User.IsInRole("admin"))
+                return View();
+            else
+                return new HttpStatusCodeResult(403);
+        }
+
 		//
 		// GET: /Account/LogOn
 

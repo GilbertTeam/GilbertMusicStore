@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using GilbertMusicStore.Models;
+using System.Web.Security;
 
 namespace GilbertMusicStore
 {
@@ -27,6 +28,24 @@ namespace GilbertMusicStore
 
 		}
 
+        public static void AddAdmin()
+        {
+            // Если нет в системе роли admin, создаём её
+            if (!Roles.RoleExists("admin"))
+                Roles.CreateRole("admin");
+
+            // Если нет в системе пользователя admin, создаём его
+            if (Membership.GetUser("admin") == null)
+            {
+                MembershipCreateStatus status = MembershipCreateStatus.Success;
+                Membership.CreateUser("admin", "temp_pass", "temp@temp.com", "2*2", "4", true, out status);
+            }
+
+            // Если у пользователя admin нет роли admin, присваиваем ему эту роль
+            if (!Roles.IsUserInRole("admin", "admin"))
+                Roles.AddUserToRole("admin", "admin");
+        }
+
 		protected void Application_Start()
 		{
 			Database.SetInitializer(new MusicStoreInitializer());
@@ -34,7 +53,9 @@ namespace GilbertMusicStore
 			AreaRegistration.RegisterAllAreas();
 
 			RegisterGlobalFilters(GlobalFilters.Filters);
-			RegisterRoutes(RouteTable.Routes);
+            RegisterRoutes(RouteTable.Routes);
+
+            AddAdmin();
 		}
 	}
 }
