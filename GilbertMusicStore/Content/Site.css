@@ -498,7 +498,8 @@ div#title {
     width: 6em;
 }
 
-/*----------------------------------------------------------*/
+/*GUITAR  DETAILS
+----------------------------------------------------------*/
 #guitarModelName h1 {
 	font-size: 18px;
 	color: #C60F19;
@@ -509,20 +510,135 @@ div#title {
 #guitarDescription {
 	width: 550px;
 	margin-top: 6px;
-	float: left;
 	clear: both;
 	font-size: 11px;
 	color: black;
 }
 
-/*#guitarMainImage
+#guitarMainImage
 {
-	float: left;
-	text-align: center;
-	width: 320px;
-	overflow: hidden;
-	position: relative;
-}*/
+	float:right;
+}
+
+.guitarDescriptionContainer
+{
+	height:100%;
+	overflow:auto;
+}
+
+.buttonAddToCart
+{
+	clear: both;
+	display: inline-block;
+	padding: 5px;
+	margin-top: 10px; 
+	border: 1px;
+	background: #999646;
+	color: #F9FF82;
+	font-weight: bold;
+	float:left;
+}
+
+.buttonAddToCart a
+{
+	color: #F9FF82;
+}
+
+.desriptionHeaderContainer
+{
+	height:100%;
+	overflow:auto;
+}
+
+.guitarDescriptionTabs
+{
+	position: relative;  
+    display: block;  
+    width: 40em;  
+    height: 24em;  
+    margin: 2em auto;
+    float:left;
+}
+
+.guitarDescriptionTabs section
+{
+	position:absolute;
+	display:block;
+	top:1.8em;
+	left:0;
+	height:21em;
+	width:35em;
+	padding: 10px 20px;
+	background-color:inherit;
+	border-radius:5px;
+	box-shadow:0 3px 3px rgba(0,0,0,0.1);
+	z-index:0;
+}
+
+.guitarDescriptionTabs section:first-child
+{
+	z-index:1;
+}
+
+.guitarDescriptionTabs section h2
+{
+	position: absolute;
+    font-size: 1em;
+    font-weight: normal;
+    width: 120px;
+    height: 1.8em;
+    top: -1.8em;
+    left: 10px;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    background-color: inherit;
+    border-radius: 5px 5px 0 0;
+}
+
+.guitarDescriptionTabs section:nth-child(2) h2  
+{
+    left: 132px;
+}
+
+.guitarDescriptionTabs section h2 a
+{
+    display: block;
+    width: 100%;
+    line-height: 1.8em;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    outline: 0 none;
+}
+
+.guitarDescriptionTabs section:target,
+.guitarDescriptionTabs section:target h2  
+{  
+    color: #F9FF82;  
+    background-color: #999646;  
+    z-index: 2;  
+}
+
+
+.guitarDescriptionTabs section,  
+.guitarDescriptionTabs section h2  
+{  
+    -webkit-transition: all 500ms ease;  
+    -moz-transition: all 500ms ease;  
+    -ms-transition: all 500ms ease;  
+    -o-transition: all 500ms ease;  
+    transition: all 500ms ease;  
+}
+
+.priceContainer 
+{
+	font-size: 1.4em;
+	color: #F55600;
+}
+
+/*.......................................... */
+
 
 .navigationMenu
 {
@@ -544,14 +660,14 @@ div#title {
 	padding: 5px;
 	margin-top: 10px; 
 	border: 1px;
-	background: #5e5b54;
-	color: #fff;
+	background: #999646;
+	color: #F9FF82;
 	font-weight: bold;
 }
 
 .button a
 {
-	color: #fff !important;
+	color: #F9FF82 !important;
 }
 
 .brandCategory

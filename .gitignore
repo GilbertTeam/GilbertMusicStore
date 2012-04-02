@@ -1,4 +1,9 @@
 *.sdf
+*.mdf
+*.ldf
+App_Data/
+Content/Images
+=======
 *.ldf
 *.mdf
 #ignore thumbnails created by windows
