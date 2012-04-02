@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.Entity;
 using System.Drawing;
-using System.IO;
-using System.Data.Entity.Validation;
-using System.Web.Helpers;
-using System.Globalization;
-using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Globalization;
+using System.IO;
 
 namespace GilbertMusicStore.Models
 {
@@ -27,9 +23,14 @@ namespace GilbertMusicStore.Models
 
 		#region Constructors
 
-		public MusicStoreInitializer()
+		public MusicStoreInitializer(string siteDirectory)
 		{
-			_siteDirectory = HttpContext.Current.Server.MapPath("~");
+			if (string.IsNullOrEmpty(siteDirectory))
+			{
+				throw new ArgumentNullException("siteDirectory");
+			}
+
+			_siteDirectory = siteDirectory;
 			_contentDirectory = Path.Combine(_siteDirectory, "Content");
 			_sampleDataDirectory = Path.Combine(_contentDirectory, "Sample Data");
 			_imagesDirectory = Path.Combine(_contentDirectory, "Images");

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using GilbertMusicStore.Models;
+using System.Web;
 
 namespace GilbertMusicStore
 {
@@ -29,7 +30,7 @@ namespace GilbertMusicStore
 
 		protected void Application_Start()
 		{
-			Database.SetInitializer(new MusicStoreInitializer());
+			Database.SetInitializer(new MusicStoreInitializer(HttpContext.Current.Server.MapPath("~")));
 
 			AreaRegistration.RegisterAllAreas();
 

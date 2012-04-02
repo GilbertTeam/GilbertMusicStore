@@ -1,13 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using GilbertMusicStore.Models.Attributes;
 
 namespace GilbertMusicStore.Models
 {
-	public class BodyType
+	public class Preamp
 	{
 		[ScaffoldColumn(false)]
 		public int Id { get; set; }
 
-		[MaxLength(50)]
+		[RequiredEx]
+		[StringLengthEx(50)]
 		public string Name { get; set; }
 	}
 }

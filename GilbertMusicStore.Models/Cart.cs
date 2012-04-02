@@ -11,8 +11,10 @@ namespace GilbertMusicStore.Models
 		[ScaffoldColumn(false)]
 		public int Id { get; set; }
 
+		[ScaffoldColumn(false)]
 		public string Tag { get; set; }
 
+		[ScaffoldColumn(false)]
 		public int GuitarId { get; set; }
 
 		public int Count { get; set; }

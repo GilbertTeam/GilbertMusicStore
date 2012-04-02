@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GilbertMusicStore", "Gilber
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GilbertMusicStore.Tests", "GilbertMusicStore.Tests\GilbertMusicStore.Tests.csproj", "{7A5C6D3F-4186-4EDE-B920-A148A1058EF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GilbertMusicStore.Models", "GilbertMusicStore.Models\GilbertMusicStore.Models.csproj", "{3C39B70F-0A23-4168-99B1-31247E81855A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,10 @@ Global
 		{7A5C6D3F-4186-4EDE-B920-A148A1058EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7A5C6D3F-4186-4EDE-B920-A148A1058EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A5C6D3F-4186-4EDE-B920-A148A1058EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C39B70F-0A23-4168-99B1-31247E81855A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C39B70F-0A23-4168-99B1-31247E81855A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C39B70F-0A23-4168-99B1-31247E81855A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C39B70F-0A23-4168-99B1-31247E81855A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using System.Web.Security;
+using GilbertMusicStore.Models.Attributes;
 
 namespace GilbertMusicStore.Models
 {
-
 	public class ChangePasswordModel
 	{
-		[Required]
+		[RequiredEx]
 		[DataType(DataType.Password)]
 		[Display(Name = "Текущий пароль")]
 		public string OldPassword { get; set; }
 
-		[Required]
-		[StringLength(100, ErrorMessage = "{0} должен быть минимум {2} символов в длину.", MinimumLength = 6)]
+		[RequiredEx]
+		[StringLengthEx(100, MinimumLength = 6)]
 		[DataType(DataType.Password)]
 		[Display(Name = "Новый пароль")]
 		public string NewPassword { get; set; }
@@ -29,11 +25,11 @@ namespace GilbertMusicStore.Models
 
 	public class LogOnModel
 	{
-		[Required]
+		[RequiredEx]
 		[Display(Name = "Имя пользователя")]
 		public string UserName { get; set; }
 
-		[Required]
+		[RequiredEx]
 		[DataType(DataType.Password)]
 		[Display(Name = "Пароль")]
 		public string Password { get; set; }
@@ -44,17 +40,17 @@ namespace GilbertMusicStore.Models
 
 	public class RegisterModel
 	{
-		[Required]
+		[RequiredEx]
 		[Display(Name = "Имя пользователя")]
 		public string UserName { get; set; }
 
-		[Required]
+		[RequiredEx]
 		[DataType(DataType.EmailAddress)]
 		[Display(Name = "Email адрес")]
 		public string Email { get; set; }
 
-		[Required]
-		[StringLength(100, ErrorMessage = "{0} должен быть минимум {2} символов в длину.", MinimumLength = 6)]
+		[RequiredEx]
+		[StringLengthEx(100, MinimumLength = 6)]
 		[DataType(DataType.Password)]
 		[Display(Name = "Пароль")]
 		public string Password { get; set; }

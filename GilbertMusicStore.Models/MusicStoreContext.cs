@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 
 namespace GilbertMusicStore.Models
 {
 	public class MusicStoreContext : DbContext
 	{
+		#region Properties
+
 		public DbSet<Brand> Brands { get; set; }
 		public DbSet<Guitar> Guitars { get; set; }
+		public DbSet<AcousticGuitar> AcousticGuitars { get; set; }
+		public DbSet<SemiAcousticGuitar> SemiAcousticGuitars { get; set; }
+		public DbSet<ElectricGuitar> ElectricGuitars { get; set; }
 		public DbSet<BodyType> BodyTypes { get; set; }
 		public DbSet<Preamp> Preamps { get; set; }
 		public DbSet<Wood> Woods { get; set; }
@@ -21,6 +22,9 @@ namespace GilbertMusicStore.Models
 		public DbSet<Cart> Carts { get; set; }
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<OrderDetail> OrderDetails { get; set; }
+		#endregion
+
+		#region Constructors
 
 		public MusicStoreContext()
 		{
@@ -28,11 +32,6 @@ namespace GilbertMusicStore.Models
 			//Configuration.LazyLoadingEnabled = false;
 			//Configuration.ProxyCreationEnabled = false;
 		}
-
-        public DbSet<AcousticGuitar> AcousticGuitars { get; set; }
-
-        public DbSet<SemiAcousticGuitar> SemiAcousticGuitars { get; set; }
-
-        public DbSet<ElectricGuitar> ElectricGuitars { get; set; }
+		#endregion
 	}
 }
