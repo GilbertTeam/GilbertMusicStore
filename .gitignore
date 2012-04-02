@@ -1,4 +1,7 @@
 *.sdf
+*.mdf
+*.ldf
+=======
 *.ldf
 *.mdf
 #ignore thumbnails created by windows
