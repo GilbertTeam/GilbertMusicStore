@@ -1,26 +1,60 @@
-﻿@model GilbertMusicStore.ViewModels.GuitarViewModel
+﻿@using GilbertMusicStore.Models
+
+@model GilbertMusicStore.ViewModels.GuitarViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Детали";
 }
 
-@Html.ActionLink("Гитары", "Index", "Store") >>
-@Html.ActionLink("Акустические гитары", "Index", "Store") >>
-@Html.ActionLink("Гитары", "Index", "Store")
-
-<div id="guitarModelName">
-	<h1>@Html.DisplayFor(modelItem => Model.Guitar.Model)</h1>
+<div class="guitarDescriptionContainer">
+	<div class="desriptionHeaderContainer">
+		@*<div id="guitarModelName">
+			<h1>@Html.DisplayFor(modelItem => Model.Guitar.Model)</h1>
+		</div>
+		<div id="guitarDescription">
+			@Html.DisplayFor(modelItem => Model.Description)
+		</div>
+		*@
+		<article  class="guitarDescriptionTabs">
+			<section id="descriptionTab">
+				<h2><a href="#descriptionTab">Описаниe</a></h2>
+				<p>
+					<strong>Модель: </strong>@Model.Guitar.Model<br />
+					<strong>Корпус: </strong>@Model.Guitar.BodyWood.Name<br />
+					<strong>Накладка на гриф: </strong>@Model.Guitar.FingerboardWood.Name<br />
+					<strong>Накладка: </strong>@Model.Guitar.FretboardWood.Name<br />
+					<strong>Бренд: </strong>@Model.Guitar.Brand.Name<br />
+					<strong>Цвет: </strong>@Model.Guitar.Color.Name<br />
+					<strong>Количество ладов: </strong>@Model.Guitar.FretsCount<br />
+					<strong>Серия: </strong>@Model.Guitar.Series<br />
+					<div class="priceContainer"><strong>Цена: </strong>@Model.Guitar.Price</div>
+				</p>
+			</section>
+			<section id="reviewTab">
+				<h2><a href="#reviewTab">Отзывы</a></h2>
+				<p>
+				@if (Model.Reviews != null)
+				{
+					foreach (GuitarReview review in Model.Reviews)
+					{
+						<strong>@review.DateCreated</strong><br />
+						@review.Content
+					}
+				}
+				</p>
+			</section>
+		</article>
+		<div id="guitarMainImage">
+			<img src="@Model.Guitar.LargeMainImageUrl" alt="@Model.Guitar.Model" />
+		</div>
+		<p class="buttonAddToCart">
+			@Html.ActionLink("Добавить в корзину", "AddToCart", "ShoppingCart", new { id = Model.Guitar.Id }, null)
+		</p>
+	</div>
 </div>
-<div id="guitarDescription">
-	@Html.DisplayFor(modelItem => Model.Description)
-</div>
-@*<div id="guitarMainImage">
-	<img src="@Model.Guitar.LargeMainImageUrl" alt="@Model.Guitar.Model" />
-</div>*@
-<p class="button">
-	@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.Guitar.Id })
-</p>
 
+
+@*
 <table class="guitarDescriptionTable">
 	<tbody>
 		<tr>
@@ -40,3 +74,4 @@
 <div class="descriptionContent">
 
 </div>
+*@
