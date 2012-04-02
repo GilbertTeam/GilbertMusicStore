@@ -34,6 +34,9 @@ namespace GilbertMusicStore
             if (!Roles.RoleExists("admin"))
                 Roles.CreateRole("admin");
 
+            if (!Roles.RoleExists("Administrator"))
+                Roles.CreateRole("Administrator");
+
             // Если нет в системе пользователя admin, создаём его
             if (Membership.GetUser("admin") == null)
             {
@@ -41,9 +44,18 @@ namespace GilbertMusicStore
                 Membership.CreateUser("admin", "temp_pass", "temp@temp.com", "2*2", "4", true, out status);
             }
 
+            if (Membership.GetUser("Administrator") == null)
+            {
+                MembershipCreateStatus status = MembershipCreateStatus.Success;
+                Membership.CreateUser("Administrator", "Qwerty12345", "temp@temp.com", "2*2", "4", true, out status);
+            }
+
             // Если у пользователя admin нет роли admin, присваиваем ему эту роль
-            if (!Roles.IsUserInRole("admin", "admin"))
-                Roles.AddUserToRole("admin", "admin");
+            if (!Roles.IsUserInRole("Administrator", "admin"))
+                Roles.AddUserToRole("Administrator", "admin");
+
+            if (!Roles.IsUserInRole("Administrator", "Administrator"))
+                Roles.AddUserToRole("Administrator", "Administrator");
         }
 
 		protected void Application_Start()

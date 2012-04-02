@@ -18,10 +18,7 @@ namespace GilbertMusicStore.Controllers
 
         public ActionResult Admin()
         {
-            if (Request.IsAuthenticated && User.IsInRole("admin"))
                 return View();
-            else
-                return new HttpStatusCodeResult(403);
         }
 
 		//
