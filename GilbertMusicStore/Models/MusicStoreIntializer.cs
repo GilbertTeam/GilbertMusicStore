@@ -8,6 +8,8 @@ using System.IO;
 using System.Data.Entity.Validation;
 using System.Web.Helpers;
 using System.Globalization;
+using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
 
 namespace GilbertMusicStore.Models
 {
@@ -67,8 +69,8 @@ namespace GilbertMusicStore.Models
 				mainImageFile = Path.ChangeExtension(mainImageFile, imageFileExtension);
 			}
 			
-			virtualLargeMainImageFile = Path.Combine(currentLargeImagesDirectory, "MainImage" + imageFileExtension);
-			virtualSmallMainImageFile = Path.Combine(currentSmallImagesDirectory, "MainImage" + imageFileExtension);
+			virtualLargeMainImageFile = Path.Combine(currentLargeImagesDirectory, "MainImage12345" + imageFileExtension);
+			virtualSmallMainImageFile = Path.Combine(currentSmallImagesDirectory, "MainImage12345" + imageFileExtension);
 
 			if (!Directory.Exists(currentLargeImagesDirectory))
 			{
@@ -88,10 +90,21 @@ namespace GilbertMusicStore.Models
 				}
 				if (!File.Exists(virtualSmallMainImageFile))
 				{
-					WebImage mainImage = new WebImage(mainImageFile);
-					mainImage.Resize(50, 120);
-					mainImage.RotateRight();
-					mainImage.Save(virtualSmallMainImageFile);
+					using (Image src = Image.FromFile(mainImageFile))
+					{
+						using (Bitmap dst = new Bitmap(50, 120))
+						{
+							using (Graphics g = Graphics.FromImage(dst))
+							{
+								g.SmoothingMode = SmoothingMode.AntiAlias;
+								g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+								g.DrawImage(src, 0, 0, dst.Width, dst.Height);
+							}
+
+							dst.RotateFlip(RotateFlipType.Rotate90FlipNone);
+							dst.Save(virtualSmallMainImageFile, ImageFormat.Png);
+						}
+					}
 				}
 			}
 

@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Routing;
-using GilbertMusicStore.Models;
 using System.Web.Security;
+using GilbertMusicStore.Models;
 
 namespace GilbertMusicStore
 {
