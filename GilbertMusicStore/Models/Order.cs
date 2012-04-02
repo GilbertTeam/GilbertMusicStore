@@ -12,7 +12,8 @@ namespace GilbertMusicStore.Models
 		public StringLengthExAttribute(int maximumLenght)
 			: base(maximumLenght)
 		{
-			DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(StringLengthExAttribute), typeof(StringLengthAttribute));
+			DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(StringLengthExAttribute),
+				typeof(StringLengthAttributeAdapter));
 		}
 
 		public override string FormatErrorMessage(string name)

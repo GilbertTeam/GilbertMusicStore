@@ -1,11 +1,27 @@
 ﻿@model IEnumerable<GilbertMusicStore.ViewModels.BrandInfo>
 
-<div class="navigationMenu">
-	<h2>По брендам:</h2>
-	<ul class="brandCategory">
+<section id="navMenu">
+	<p class="navMenuH1">Фильтрация</p>
+	<p class="navMenuH2">По типу:</p>
+	<ul class="navUl">
+		<li>@Html.ActionLink("Электрическая", "Index", new { guitarType = "Электрическая" })</li>
+		<li>@Html.ActionLink("Акустическая", "Index", new { guitarType = "Акустическая" })</li>
+		<li>@Html.ActionLink("Полуакустическая", "Index", new { guitarType = "Полуакустическая" })</li>
+	</ul>
+	<p class="navMenuH2">По брендам:</p>
+	<ul class="navUl">
 		@foreach (var item in Model)
 		{
-			<li>@Html.ActionLink(item.Brand.Name + "(" + item.Count + ")", "Index", "Store", new { brandId = item.Brand.Id })</li>
+			<li>@Html.ActionLink(item.Brand.Name + "(" + item.Count + ")", "Index",new { brandId = item.Brand.Id })</li>
 		}
 	</ul>
-</div>
+	<p class="navMenuH1">Сортировка</p>
+		<ul class="navUl">
+		<li>@Html.ActionLink("Название (по возр)", "Index", new { sortOrder = "name" })</li>
+		<li>@Html.ActionLink("Название (по убыв)", "Index", new { sortOrder = "name desc" })</li>
+		<li>@Html.ActionLink("Наличие (по возр)", "Index", new { sortOrder = "count" })</li>
+		<li>@Html.ActionLink("Наличие (по убыв)", "Index", new { sortOrder = "count desc" })</li>
+		<li>@Html.ActionLink("Цена (по возр)", "Index", new { sortOrder = "price" })</li>
+		<li>@Html.ActionLink("Цена (по убыв)", "Index", new { sortOrder = "price desc" })</li>
+	</ul>
+</section>

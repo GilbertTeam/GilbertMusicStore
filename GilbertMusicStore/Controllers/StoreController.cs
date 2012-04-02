@@ -45,15 +45,63 @@ namespace GilbertMusicStore.Controllers
 			base.Dispose(disposing);
 		}
 
-		public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+		public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page,
+			string guitarType, int? brandId)
 		{
-			IEnumerable<Guitar> guitars =
+			ViewBag.CurrentSort = sortOrder;
+			ViewBag.CurrentFilter = currentFilter;
+			ViewBag.CurrentType = guitarType;
+
+			IEnumerable<Guitar> allGuitars =
 				_db.Guitars
 				.Include(g => g.Color)
 				.Include(g => g.BodyWood)
 				.Include(g => g.FretboardWood)
 				.Include(g => g.FretboardWood)
 				.Include(g => g.FingerboardWood);
+
+
+			List<Guitar> tmpGuitars = new List<Guitar>();
+			if (string.IsNullOrEmpty(guitarType))
+			{
+				guitarType = "";
+			}
+
+			string tmp = guitarType.ToLower();
+
+			foreach (Guitar guitar in allGuitars)
+			{
+				switch (tmp)
+				{
+					case "акустическая":
+						ElectricGuitar tmpElGuitar = guitar as ElectricGuitar;
+						if (tmpElGuitar != null)
+							break;
+						SemiAcousticGuitar tmpSemiGuitar = guitar as SemiAcousticGuitar;
+						if (tmpSemiGuitar != null)
+							break;
+						AcousticGuitar acGuitar = guitar as AcousticGuitar;
+						if (acGuitar != null)
+							tmpGuitars.Add(guitar);
+						break;
+					case "электрическая":
+						ElectricGuitar elGuitar = guitar as ElectricGuitar;
+						if (elGuitar != null)
+							tmpGuitars.Add(guitar);
+						break;
+					case "полуакустическая":
+						SemiAcousticGuitar semiGuitar = guitar as SemiAcousticGuitar;
+						if (semiGuitar != null)
+							tmpGuitars.Add(guitar);
+						break;
+					default:
+						tmpGuitars.Add(guitar);
+						break;
+				}
+			}
+			
+
+			IEnumerable<Guitar> guitars = tmpGuitars;
 
 			if (Request.HttpMethod == "GET")
 			{
@@ -67,51 +115,36 @@ namespace GilbertMusicStore.Controllers
 
 			if (string.IsNullOrEmpty(sortOrder))
 			{
-				_currentSortColumn = "none";
+				ViewBag.CurrentSortColumn = "none";
 			}
 			else
 			{
 				string temp = sortOrder.ToLower();
-				if (_currentSortColumn != temp)
-				{
-					//По умолчанию используется сортировка по возрастанию.
-					_currentCortDirection = SortDirection.Ascending;
-				}
-				else
-				{
-					//Если сортировка уже была включена, то переключим ее.
-					_currentCortDirection = _currentCortDirection != SortDirection.Ascending ? SortDirection.Ascending : SortDirection.Descending;
-				}
-
 				_currentSortColumn = temp;
 				ViewBag.CurrentSortColumn = _currentSortColumn;
 
 				if (string.Compare(_currentSortColumn, "name") == 0)
 				{
-					switch (_currentCortDirection)
-					{
-						case SortDirection.Ascending:
-							guitars = guitars.OrderBy(guitar => guitar.Model);
-							break;
-						case SortDirection.Descending:
-							guitars = guitars.OrderByDescending(guitar => guitar.Model);
-							break;
-					}
+					guitars = guitars.OrderBy(guitar => guitar.Model);
+					
+				}
+				else if (string.Compare(_currentSortColumn, "name desc") == 0)
+				{
+					guitars = guitars.OrderByDescending(guitar => guitar.Model);
 				}
 				else if (string.Compare(_currentSortColumn, "count") == 0)
 				{
 				}
+				else if (string.Compare(_currentSortColumn, "count desc") == 0)
+				{
+				}
 				else if (string.Compare(_currentSortColumn, "price") == 0)
 				{
-					switch (_currentCortDirection)
-					{
-						case SortDirection.Ascending:
-							guitars = guitars.OrderBy(guitar => guitar.Price);
-							break;
-						case SortDirection.Descending:
-							guitars = guitars.OrderByDescending(guitar => guitar.Price);
-							break;
-					}
+					guitars = guitars.OrderBy(guitar => guitar.Price);
+				}
+				else if (string.Compare(_currentSortColumn, "price desc") == 0)
+				{
+					guitars = guitars.OrderByDescending(guitar => guitar.Price);
 				}
 			}
 
@@ -120,6 +153,11 @@ namespace GilbertMusicStore.Controllers
 				string temp = searchString.ToLower();
 
 				guitars = guitars.Where(guitar => guitar.Model.ToLower().Contains(temp));
+			}
+
+			if (brandId != null)
+			{
+				guitars = guitars.Where(guitar => guitar.BrandId == brandId);
 			}
 
 			List<Guitar> list = guitars.ToList();

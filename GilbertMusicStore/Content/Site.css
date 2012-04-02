@@ -103,6 +103,7 @@ header h1, #header h1 {
 #main {
     padding: 30px 30px 15px 30px;
     background-color: #F9FF82;
+    height:100%;
     position: relative;
     border-radius: 4px 0 0 0;
     -webkit-border-radius: 4px 0 0 0;
@@ -128,27 +129,100 @@ footer,
 
 .tableView
 {
-	
+	background-color: inherit;
+    overflow: hidden;
+    padding-left: 15px;
+    padding-right: 15px;
+	display:block;
+	width: 60%;
+	border-left: 5px groove #F55600;
 }
 
 /* LEFT TAB MENU   
 ----------------------------------------------------------*/
 
-.navMenu
+section#navMenu
 {
-	border-right: 5px groove #F55600;
-	top: 0%;
-	width: 20%;
-	float: left;
+	width: 19%;
 	margin-right: 5%;
+	overflow:hidden;
+	float:left;
 }
 
-ul#navUl
+.testClass 
+{
+	height:100%;
+	overflow:auto;
+}
+
+.navUl
+{
+	text-align: left;
+}
+
+.navUl li 
 {
 	
+	list-style:none;
 }
 
+.navUl li a 
+{
+	padding: 5px 5px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2em;
+    background-color: #F9FF82;
+    color: #524B21;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+}
 
+.navUl li a:hover {
+    background-color: #999646;
+    text-decoration: none;
+}
+
+.navUl li a:active {
+    background-color: #F9FF82;
+    text-decoration: none;
+}
+
+.catalogTable
+{
+	width:100%;
+	border-width: 0px;
+	
+	border-style: outset;
+	border-color: gray;
+	border-collapse: separate;
+}
+
+.catalogTable th {
+	border-width: 0px;
+	font-weight:bold;
+	text-align:center;
+	background-color: #524B21;
+	color:#F9FF82;
+}
+.catalogTable td {
+	border-width: 1px;
+	border-color: #524B21;
+}
+
+.navMenuH1
+{
+	font-size:1.2em;
+	font-weight:bolder;
+}
+
+.navMenuH2
+{
+	font-size:1.1em;
+	font-weight:bold;
+	font-style:italic;
+}
 /* TAB MENU   
 ----------------------------------------------------------*/
 ul#menu {
@@ -199,6 +273,69 @@ ul#menu li.selected a {
     color: #000;
 }
 
+/* News
+----------------------------------------------------------*/
+.newsTableContainer
+{
+	
+}
+
+.newsTable 
+{
+	border-width:0px;
+}
+
+.newsTable tbody
+{
+	border-width:0px;
+}
+
+.newsTable tr
+{
+}
+
+.newsTable td
+{
+	border-width:0px;
+}
+
+.newsTable th
+{
+	border-width: 0px;
+}
+
+.news
+{
+	padding: 8px 8px;
+	margin: 0;
+	position: relative;
+	background-color: white;
+}
+
+.newsTitle
+{
+	
+}
+
+.newsDate
+{
+	margin: 0 0 0 0;
+	padding: 0;
+	position: relative;
+	font-size: 9px;
+	color: #666;
+	background-color:inherit;
+}
+
+.newsContent
+{
+	height: 48px;
+	overflow: hidden;
+	font-size: 10px;
+	margin-top: 5px;
+	background-color:inherit;
+}
+
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 
@@ -242,21 +379,32 @@ input[type="submit"] {
 ----------------------------------------------------------*/
 
 table {
-    border: solid 1px #e8eef4;
-    border-collapse: collapse;
+	width:100%;
+	border: solid 1px #e8eef4;
+	border-style: outset;
+	border-color: gray;
+	border-collapse: separate;
 }
 
 table td {
-    padding: 5px;
-    border: solid 1px #e8eef4;
+	border: solid 1px #e8eef4;
+	border-color: #524B21;
 }
 
 table th {
-    padding: 6px 5px;
-    text-align: left;
-    background-color: #e8eef4;
-    border: solid 1px #e8eef4;
+	border: solid 1px #e8eef4;
+	font-weight:bold;
+	text-align:center;
+	background-color: #524B21;
+	color:#F9FF82;
 }
+
+table tr 
+{
+	border-width:1px;
+	border-color:Black;
+}
+
 
 /* MISC  
 ----------------------------------------------------------*/
@@ -413,36 +561,6 @@ div#title {
 	padding-left: 10px;
 	line-height: 12px;
 	margin-bottom: 6px;
-}
-
-.news
-{
-	padding: 8px 8px;
-	margin: 0;
-	position: relative;
-	background-color: white;
-}
-
-.newsTitle
-{
-	
-}
-
-.newsDate
-{
-	margin: 0 0 0 0;
-	padding: 0;
-	position: relative;
-	font-size: 9px;
-	color: #666;
-}
-
-.newsContent
-{
-	height: 48px;
-	overflow: hidden;
-	font-size: 10px;
-	margin-top: 5px;
 }
 
 div.search

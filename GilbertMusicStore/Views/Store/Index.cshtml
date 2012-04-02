@@ -2,103 +2,99 @@
 @{
 	ViewBag.Title = "Index";
 }
-@*<div class="navMenu">
-	<h2>Выберите тип гитар:</h2>
-	<ul id="navUl">
-		<li>Электрическая</li>
-		<li>Электроакустика</li>
-	</ul>
-</div>*@
-<section class="tableView">
-	@*<img src="../../Content/Images/HomeImage.png" alt="nema"/>*@
-	<div class="search">
-		@using (Html.BeginForm())
+
+<div class="testClass" id="contentPresenter">
+
+	 @{ Html.RenderAction("NavigationMenu", "Store"); }
+
+	<section class="tableView" id="tableView">
+		@*<img src="../../Content/Images/HomeImage.png" alt="nema"/>*@
+		<div class="search">
+			@using (Html.BeginForm())
+			{
+				<p>
+				<!--<form method="get" action="/search/">-->
+					@*<input class="search_input" name="query" type="text" onfocus="sh(this,0);" value="@ViewBag.CurrentFilter" onblur="sh(this,1);" maxlength="150"/>*@
+					Искать по имени: @Html.TextBox("SearchString")
+					<input class="search_button" type="submit" name="search_button" value="найти"/>
+				<!--</form>-->
+				</p>
+			}
+		</div>
+		@*@using (Html.BeginForm())
 		{
 			<p>
-			<!--<form method="get" action="/search/">-->
-				@*<input class="search_input" name="query" type="text" onfocus="sh(this,0);" value="@ViewBag.CurrentFilter" onblur="sh(this,1);" maxlength="150"/>*@
-				Find by name: @Html.TextBox("SearchString")
-				<input class="search_button" type="submit" name="search_button" value="найти"/>
-			<!--</form>-->
+				Find by name: @Html.TextBox("SearchString")  
+				<input type="submit" value="Search" />
 			</p>
-		}
-	</div>
-	@*@using (Html.BeginForm())
-	{
-		<p>
-			Find by name: @Html.TextBox("SearchString")  
-			<input type="submit" value="Search" />
-		</p>
-	}*@
-	<table>
-		<thead>
+		}*@
+		<table class="catalogTable">
+			<thead>
 			<tr>
-				<th>
+				<th style="">
+					Изображение
 				</th>
-				<th>
-					@Html.ActionLink("Название", "Index", new { sortOder = "name" })
+				<th style="font-weight:bold; text-align:center">
+					Название
 				</th>
-				<th>
-					@Html.ActionLink("Наличие", "Index", new { sortOrder = "count" })
-				</th>
-				<th>
-					@Html.ActionLink("Цена", "Index", new { sortOrder = "price" })
+				<th style="font-weight:bold; text-align:center">
+					Цена
 				</th>
 			</tr>
-		</thead>
-		<tbody>
-			@foreach (var item in Model)
-			{
-				<tr>
-					<td>
-					</td>
-					<td>
-						<img alt="@item.Guitar.Model" src="@item.Guitar.SmallMainImageUrl" />
-					</td>
-					<td>
-						<div>
-							<strong>@Html.ActionLink(item.Guitar.Model, "Details", "Store", new { id = item.Guitar.Id })</strong>
-						</div>
-						@Html.DisplayFor(modelItem => item.Guitar.Manufacturer.Name)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Guitar.Price)
-						<div class="toCart">
-						@Html.ActionLink("в корзину", "AddToCart", "ShoppingCart", new { id = item.Guitar.Id }, string.Empty);
-						</div>
-					</td>
-				</tr>
-			}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							<img alt="@item.Guitar.Model" src="@item.Guitar.SmallMainImageUrl" />
+						</td>
+						<td>
+							<div>
+								<strong>@Html.ActionLink(item.Guitar.Model, "Details", new { id = item.Guitar.Id })</strong>
+							</div>
+							@Html.DisplayFor(modelItem => item.Guitar.Manufacturer.Name)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Guitar.Price)
+							<div class="toCart">
+							@Html.ActionLink("в корзину", "AddToCart", "ShoppingCart", new { id = item.Guitar.Id }, string.Empty);
+							</div>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
 
-	<div>
-		Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-		of @Model.PageCount
-		@if (Model.HasPreviousPage)
-		{
-			@Html.ActionLink("<<", "Index", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-			@Html.Raw(" ");
-			@Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-		}
-		else
-		{
-			@:<<
-			@Html.Raw(" ");
-			@:< Prev
-		}
-		@if (Model.HasNextPage)
-		{
-			@Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-			@Html.Raw(" ");
-			@Html.ActionLink(">>", "Index", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-		}
-		else
-		{
-			@:Next >
-			@Html.Raw(" ")
-			@:>>
-		}
-	</div>
-</section>
+		<div>
+			Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+			of @Model.PageCount
+			@if (Model.HasPreviousPage)
+			{
+				@Html.ActionLink("<<", "Index", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, guitarType = ViewBag.CurrentType })
+				@Html.Raw(" ");
+				@Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, guitarType = ViewBag.CurrentType })
+			}
+			else
+			{
+				@:<<
+				@Html.Raw(" ");
+				@:< Prev
+			}
+			@if (Model.HasNextPage)
+			{
+				@Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, guitarType = ViewBag.CurrentType })
+				@Html.Raw(" ");
+				@Html.ActionLink(">>", "Index", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, guitarType = ViewBag.CurrentType })
+			}
+			else
+			{
+				@:Next >
+				@Html.Raw(" ")
+				@:>>
+			}
+		</div>
+	</section>
+</div>
+
 

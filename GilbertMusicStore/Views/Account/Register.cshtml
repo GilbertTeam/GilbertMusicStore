@@ -1,25 +1,25 @@
 ﻿@model GilbertMusicStore.Models.RegisterModel
 
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Регистрация";
 }
 
-<h2>Create a New Account</h2>
+<h2>Создание нового аккаунта</h2>
 <p>
-    Use the form below to create a new account. 
+    Используйте нижеследущие поля для регистрации.
 </p>
 <p>
-    Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length.
+    Пароль должен состоять из минимум @Membership.MinRequiredPasswordLength символов.
 </p>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 @using (Html.BeginForm()) {
-    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+    @Html.ValidationSummary(true, "Не удалось создать аккаунт. Скорректируйте введённые данные и попробуйте ещё.")
     <div>
         <fieldset>
-            <legend>Account Information</legend>
+            <legend>Информация об аккаунте</legend>
 
             <div class="editor-label">
                 @Html.LabelFor(m => m.UserName)
@@ -54,7 +54,7 @@
             </div>
 
             <p>
-                <input type="submit" value="Register" />
+                <input type="submit" value="Зарегистрироваться" />
             </p>
         </fieldset>
     </div>
