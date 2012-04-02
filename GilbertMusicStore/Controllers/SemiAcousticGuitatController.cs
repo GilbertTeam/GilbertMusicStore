@@ -8,7 +8,9 @@ using System.Web.Mvc;
 using GilbertMusicStore.Models;
 
 namespace GilbertMusicStore.Controllers
-{ 
+{
+    [Authorize(Roles = "Administrator")]
+
     public class SemiAcousticGuitarController : Controller
     {
         private MusicStoreContext db = new MusicStoreContext();
