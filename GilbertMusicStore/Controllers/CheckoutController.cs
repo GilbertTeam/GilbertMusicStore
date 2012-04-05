@@ -48,7 +48,7 @@ namespace GilbertMusicStore.Controllers
 					ShoppingCart shoppingCart = ShoppingCart.GetCart(HttpContext);
 					shoppingCart.CreateOrder(order);
 
-					return RedirectToAction("Complete", new { id = order.Id });
+					return RedirectToAction("Payment", order);
 				}
 			}
 			catch (Exception)
@@ -72,6 +72,18 @@ namespace GilbertMusicStore.Controllers
 			{
 				return View("Error");
 			}
+		}
+
+		public ActionResult Payment(Order order)
+		{
+			ViewBag.Value = "<input type=\"hidden\" name=\"LMI_PAYMENT_AMOUNT\" value=\"" + order.Total + "\">";
+			ViewBag.Total = order.Total;
+
+			SendEmail(order.Id); //В теории если бы был настоящий сайт,
+			// этого не надо бы, на веб мани есть настройка mailto:, но так как сайта у нас нигде не захосчен то
+			// пожалуй не помешает
+
+			return View();
 		}
 
 		#region MailSend
