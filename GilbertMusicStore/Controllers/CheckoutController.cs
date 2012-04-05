@@ -42,7 +42,7 @@ namespace GilbertMusicStore.Controllers
 				ShoppingCart shoppingCart = ShoppingCart.GetCart(HttpContext);
 				shoppingCart.CreateOrder(order);
 
-					return RedirectToAction("Payment", order);
+				return RedirectToAction("Payment", order);
 			}
 			catch (Exception)
 			{
