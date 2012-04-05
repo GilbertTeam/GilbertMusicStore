@@ -19,6 +19,8 @@ namespace GilbertMusicStore.Controllers
 
 		#region Methods
 
+		#region FillViewBag
+
 		private void FillGuitarViewBag()
 		{
 			ViewBag.BrandId = new SelectList(_db.Brands, "Id", "Name");
@@ -29,11 +31,28 @@ namespace GilbertMusicStore.Controllers
 			ViewBag.FingerboardWoodId = new SelectList(_db.Woods, "WoodId", "Name");
 		}
 
+		private void FillGuitarViewBag(Guitar g)
+		{
+			ViewBag.BrandId = new SelectList(_db.Brands, "Id", "Name", g.BrandId);
+			ViewBag.ColorId = new SelectList(_db.Colors, "Id", "Name", g.ColorId);
+			ViewBag.ManufacturerId = new SelectList(_db.Manufacturers, "Id", "Name", g.ManufacturerId);
+			ViewBag.BodyWoodId = new SelectList(_db.Woods, "WoodId", "Name", g.BodyWoodId);
+			ViewBag.FretboardWoodId = new SelectList(_db.Woods, "WoodId", "Name", g.FretboardWoodId);
+			ViewBag.FingerboardWoodId = new SelectList(_db.Woods, "WoodId", "Name", g.FingerboardWoodId);
+		}
+
 		private void FillAcousticGuitarViewBag()
 		{
 			FillGuitarViewBag();
 
 			ViewBag.BodyTypeId = new SelectList(_db.BodyTypes, "Id", "Name");
+		}
+
+		private void FillAcousticGuitarViewBag(AcousticGuitar g)
+		{
+			FillGuitarViewBag(g);
+
+			ViewBag.BodyTypeId = new SelectList(_db.BodyTypes, "Id", "Name", g.BodyTypeId);
 		}
 
 		private void FillSemiAcousticGuitarViewBag()
@@ -44,10 +63,25 @@ namespace GilbertMusicStore.Controllers
 			ViewBag.PickupId = new SelectList(_db.Pickups, "Id", "Name");
 		}
 
+		private void FillSemiAcousticGuitarViewBag(SemiAcousticGuitar g)
+		{
+			FillAcousticGuitarViewBag(g);
+
+			ViewBag.PreampId = new SelectList(_db.Preamps, "Id", "Name", g.PreampId);
+			ViewBag.PickupId = new SelectList(_db.Pickups, "Id", "Name", g.PickupId);
+		}
+
 		private void FillElectricGuitarViewBag()
 		{
 			FillGuitarViewBag();
 		}
+
+		private void FillElectricGuitarViewBag(ElectricGuitar g)
+		{
+			FillGuitarViewBag(g);
+		}
+
+		#endregion
 
 		protected override void Dispose(bool disposing)
 		{
@@ -141,9 +175,18 @@ namespace GilbertMusicStore.Controllers
 		public ActionResult Edit(int id)
 		{
 			Guitar guitar = _db.Guitars.Find(id);
-			ViewBag.BrandId = new SelectList(_db.Brands, "Id", "Name", guitar.BrandId);
-			ViewBag.ColorId = new SelectList(_db.Colors, "Id", "Name", guitar.ColorId);
-			ViewBag.ManufacturerId = new SelectList(_db.Manufacturers, "ManufacturerId", "Name", guitar.ManufacturerId);
+			if(guitar is AcousticGuitar)
+			{
+				FillAcousticGuitarViewBag(guitar as AcousticGuitar);
+			}
+			if (guitar is SemiAcousticGuitar)
+			{
+				FillSemiAcousticGuitarViewBag(guitar as SemiAcousticGuitar);
+			}
+			if (guitar is ElectricGuitar)
+			{
+				FillElectricGuitarViewBag(guitar as ElectricGuitar);
+			}
 			return View(guitar);
 		}
 
@@ -176,6 +219,7 @@ namespace GilbertMusicStore.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
+
 		#endregion
 	}
 }

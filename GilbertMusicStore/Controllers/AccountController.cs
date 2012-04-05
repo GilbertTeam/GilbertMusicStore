@@ -105,31 +105,55 @@ namespace GilbertMusicStore.Controllers
 
 		public ActionResult Register()
 		{
+			string s = DateTime.Now.ToString() + "GilbertMusicStore";
+			s = s.Replace(" ", "");
+			s += "-80-240.jpgs";
+			ViewBag.img = s;
+			ViewBag.code = "Enter_code";
 			return View();
 		}
 
 		[HttpPost]
-		public ActionResult Register(RegisterModel model)
+		public ActionResult Register(RegisterModel model, string img, string code)
 		{
-			if (ModelState.IsValid)
+			string FileName="http://www.opencaptcha.com/validate.php?img=";
+			FileName+=img;
+			FileName+="&ans=";
+			FileName += code;
+			System.Net.WebClient wc = new System.Net.WebClient();
+			byte[] response = wc.DownloadData(FileName);
+			string Result = System.Text.Encoding.ASCII.GetString(response);
+			if (string.Compare(Result, "pass") != 0)
 			{
-				MembershipCreateStatus createStatus;
-				Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
-
-				if (createStatus == MembershipCreateStatus.Success)
+				ModelState.AddModelError("", "Вы ошиблись при вводе капчи");
+			}
+			else
+			{
+				if (ModelState.IsValid)
 				{
-					CheckoutShoppingCart(model.UserName);
+					MembershipCreateStatus createStatus;
+					Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
 
-					FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-					return RedirectToAction("Index", "News");
-				}
-				else
-				{
-					ModelState.AddModelError("", ErrorCodeToString(createStatus));
+					if (createStatus == MembershipCreateStatus.Success)
+					{
+						CheckoutShoppingCart(model.UserName);
+
+						FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
+						return RedirectToAction("Index", "News");
+					}
+					else
+					{
+						ModelState.AddModelError("", ErrorCodeToString(createStatus));
+					}
 				}
 			}
 
 			// If we got this far, something failed, redisplay form
+			string s = DateTime.Now.ToString() + "GilbertMusicStore";
+			s = s.Replace(" ", "");
+			s += "-80-240.jpgs";
+			ViewBag.img = s;
+			ViewBag.code = "Enter_code";
 			return View(model);
 		}
 

@@ -18,7 +18,7 @@ namespace GilbertMusicStore.Controllers
 
 		public ActionResult Index()
 		{
-			return View(_db.News.ToList());
+			return View(_db.News.OrderByDescending(or=> or.Date).ToList());
 		}
 
 		public ActionResult About()

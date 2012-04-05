@@ -20,15 +20,8 @@ namespace GilbertMusicStore.Controllers
 
         public ActionResult Index()
         {
-            if (Request.IsAuthenticated && User.IsInRole("admin"))
-            {
                 IEnumerable<AcousticGuitar> guitars = db.AcousticGuitars.Include(a => a.Brand).Include(a => a.Manufacturer).Include(a => a.Color).Include(a => a.BodyType);
                 return View(guitars.ToList());
-            }
-            else
-            {
-                return new HttpStatusCodeResult(403);
-            }
         }
 
         //

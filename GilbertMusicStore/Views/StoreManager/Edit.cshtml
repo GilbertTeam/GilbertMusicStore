@@ -16,6 +16,36 @@
 
         @Html.HiddenFor(model => model.Id)
 
+        @if (ViewBag.BodyTypeId != null)
+        {
+            <div class="editor-label">
+                @Html.Label("BodyType")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("BodyTypeId", String.Empty)
+            </div>
+        }
+
+        @if (ViewBag.PreampId != null)
+        {
+            <div class="editor-label">
+                @Html.Label("Preamp")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("PreampId", String.Empty)
+            </div>
+        }
+
+        @if (ViewBag.PickupId != null)
+        {
+            <div class="editor-label">
+                @Html.Label("Pickup")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("PickupId", String.Empty)
+            </div>
+        }
+
         <div class="editor-label">
             @Html.LabelFor(model => model.BrandId, "Brand")
         </div>
@@ -57,27 +87,27 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.BodyWoodId)
+            @Html.LabelFor(model => model.BodyWood)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.BodyWoodId)
-            @Html.ValidationMessageFor(model => model.BodyWoodId)
+            @Html.DropDownList("BodyWoodId", String.Empty)
+            @Html.ValidationMessageFor(model => model.BodyWood)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.FretboardWoodId)
+            @Html.LabelFor(model => model.FretboardWood)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.FretboardWoodId)
-            @Html.ValidationMessageFor(model => model.FretboardWoodId)
+            @Html.DropDownList("FretboardWoodId", String.Empty)
+            @Html.ValidationMessageFor(model => model.FretboardWood)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.FingerboardWoodId)
+            @Html.LabelFor(model => model.FingerboardWood)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.FingerboardWoodId)
-            @Html.ValidationMessageFor(model => model.FingerboardWoodId)
+            @Html.DropDownList("FingerboardWoodId", String.Empty)
+            @Html.ValidationMessageFor(model => model.FingerboardWood)
         </div>
 
         <div class="editor-label">
