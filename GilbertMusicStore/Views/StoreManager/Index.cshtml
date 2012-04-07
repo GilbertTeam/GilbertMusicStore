@@ -1,4 +1,21 @@
-﻿@model IEnumerable<GilbertMusicStore.Models.Guitar>
+﻿@{
+	ViewBag.Title = "Админка";
+}
+<h2>
+	Админка
+</h2>
+<p>
+    @Html.ActionLink("Акустические гитары", "Index", "AcousticGuitar")
+	<br />
+	@Html.ActionLink("Полу-акустические гитары", "Index", "semiAcousticGuitar")
+	<br />
+	@Html.ActionLink("Электро-гитары", "Index", "ElectricGuitar")
+    <br />
+    @Html.ActionLink("Новости", "Index", "NewsAdmin")
+</p>
+
+@*
+@model IEnumerable<GilbertMusicStore.Models.Guitar>
 @{
 	ViewBag.Title = "Index";
 }
@@ -56,9 +73,9 @@
 				@Html.DisplayFor(modelItem => item.Price)
 			</td>
 			<td>
-				@*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+				@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
 				@Html.ActionLink("Details", "Details", new { id = item.Id }) |
-				@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+				@Html.ActionLink("Delete", "Delete", new { id = item.Id })
 				<p class="button">
 					@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = item.Id }, "");
 				</p>
@@ -66,3 +83,4 @@
 		</tr>
 	}
 </table>
+*@

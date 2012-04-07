@@ -1,0 +1,18 @@
+﻿@{
+	ViewBag.Title = "Payment";
+}
+
+<h2>Оплата</h2>
+
+<form id=pay name=pay method="POST" action="https://merchant.webmoney.ru/lmi/payment.asp">
+<p>
+	@Html.Raw(ViewBag.Value)
+	<input type="hidden" name="LMI_PAYMENT_DESC" value="тестовый платеж">
+	<input type="hidden" name="LMI_PAYMENT_NO" value="1">
+	<input type="hidden" name="LMI_PAYEE_PURSE" value="R547851689842">
+	<input type="hidden" name="LMI_SIM_MODE" value="0">
+</p>
+<p>	
+	<input type="submit" value="Оплатить с помощью WebMoney">
+</p>
+</form>

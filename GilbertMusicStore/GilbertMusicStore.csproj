@@ -292,6 +292,16 @@
     <Content Include="Views\NewsAdmin\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Checkout\Payment.cshtml" />
+    <Content Include="Views\StoreManager\EditAcousticGuitar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\StoreManager\EditSemiacousticGuitar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\StoreManager\EditElectricGuitar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\GilbertMusicStore.Models\GilbertMusicStore.Models.csproj">
       <Project>{3C39B70F-0A23-4168-99B1-31247E81855A}</Project>
       <Name>GilbertMusicStore.Models</Name>

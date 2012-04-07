@@ -33,23 +33,16 @@ namespace GilbertMusicStore.Controllers
 
 			try
 			{
-				if (!string.Equals(values["PromoCode"], PromoCode, StringComparison.OrdinalIgnoreCase))
-				{
-					return View(order);
-				}
-				else
-				{
-					order.UserName = User.Identity.Name;
-					order.OrderDate = DateTime.Now;
+				order.UserName = User.Identity.Name;
+				order.OrderDate = DateTime.Now;
 
-					_db.Orders.Add(order);
-					_db.SaveChanges();
+				_db.Orders.Add(order);
+				_db.SaveChanges();
 
-					ShoppingCart shoppingCart = ShoppingCart.GetCart(HttpContext);
-					shoppingCart.CreateOrder(order);
+				ShoppingCart shoppingCart = ShoppingCart.GetCart(HttpContext);
+				shoppingCart.CreateOrder(order);
 
-					return RedirectToAction("Complete", new { id = order.Id });
-				}
+				return RedirectToAction("Payment", order);
 			}
 			catch (Exception)
 			{
@@ -60,7 +53,7 @@ namespace GilbertMusicStore.Controllers
 		public ActionResult Complete(int id)
 		{
 			bool isValid = _db.Orders.Any(order =>
-				order.Id == id && 
+				order.Id == id &&
 				order.UserName == User.Identity.Name);
 
 			if (isValid)
@@ -74,33 +67,52 @@ namespace GilbertMusicStore.Controllers
 			}
 		}
 
+		public ActionResult Payment(Order order)
+		{
+			ViewBag.Value = "<input type=\"hidden\" name=\"LMI_PAYMENT_AMOUNT\" value=\"" + order.Total + "\">";
+			ViewBag.Total = order.Total;
+
+			SendEmail(order.Id); //В теории если бы был настоящий сайт,
+			// этого не надо бы, на веб мани есть настройка mailto:, но так как сайта у нас нигде не захосчен то
+			// пожалуй не помешает
+
+			return View();
+		}
+
 		#region MailSend
 
 		void SendEmail(int id)
 		{
-			Order order=_db.Orders.Find(id);
-			System.Net.Mail.MailMessage mm = new System.Net.Mail.MailMessage();
-			mm.From = new System.Net.Mail.MailAddress("seralexandr@bk.ru");
-			mm.To.Add(new System.Net.Mail.MailAddress(order.Email));
-			mm.Subject = "Ваш заказ!";
-			mm.IsBodyHtml = true;//письмо в html формате (если надо)
-			string text = "Здравствуйте, " + order.FirstName + " " + order.LastName + "!<br>";
-			text += "Вы сделали заказ на гитары в магазине Gilbert Music Store! <br>";
-			text += "Ваш заказ:<br>";
-			var details=_db.OrderDetails.Where(orderDetail => orderDetail.OrderId==id);
-			int i = 1;
-			foreach (OrderDetail d in details)
+			try
 			{
-				text += i.ToString() + ").   ";
-				text += d.Guitar.Description+"<br><br>";
-				text += "<img src=" + d.Guitar.LargeMainImageUrl + ">";
-				i++;
+				Order order = _db.Orders.Find(id);
+				System.Net.Mail.MailMessage mm = new System.Net.Mail.MailMessage();
+				mm.From = new System.Net.Mail.MailAddress("seralexandr@bk.ru");
+				mm.To.Add(new System.Net.Mail.MailAddress(order.Email));
+				mm.Subject = "Ваш заказ!";
+				mm.IsBodyHtml = true;//письмо в html формате (если надо)
+				string text = "Здравствуйте, " + order.FirstName + " " + order.LastName + "!<br>";
+				text += "Вы сделали заказ на гитары в магазине Gilbert Music Store! <br>";
+				text += "Ваш заказ:<br>";
+				var details = _db.OrderDetails.Where(orderDetail => orderDetail.OrderId == id);
+				int i = 1;
+				foreach (OrderDetail d in details)
+				{
+					text += i.ToString() + ").   ";
+					text += d.Guitar.Description + "<br><br>";
+					text += "<img src=" + d.Guitar.LargeMainImageUrl + ">";
+					i++;
+				}
+				text += "Общая стоимость заказа " + order.Total.ToString() + "p.";
+				mm.Body = text;
+				System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("smtp.mail.ru");
+				client.Credentials = new System.Net.NetworkCredential("seralexandr@bk.ru", "MyNewPassword");
+				client.Send(mm);//поехало
 			}
-			text +="Общая стоимость заказа " +order.Total.ToString()+"p.";
-			mm.Body = text;
-			System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("smtp.mail.ru");
-			client.Credentials = new System.Net.NetworkCredential("seralexandr@bk.ru", "MyNewPassword"); 
-			client.Send(mm);//поехало
+			catch(Exception)
+			{
+				
+			}
 		}
 
 		#endregion
