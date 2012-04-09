@@ -34,7 +34,7 @@ namespace GilbertMusicStore.Controllers
 				guitar.FretboardWood.Name.ToLower(),
 				guitar.FingerboardWood.Name.ToLower());
 
-			GuitarViewModel guitarViewModel = new GuitarViewModel { Guitar = guitar, Count = count, Description = description };
+			GuitarViewModel guitarViewModel = new GuitarViewModel(guitar, description, count, guitar.RelatedGuitars.Select(g => g.Guitar));
 
 			return guitarViewModel;
 		}
@@ -59,7 +59,6 @@ namespace GilbertMusicStore.Controllers
 				.Include(g => g.FretboardWood)
 				.Include(g => g.FretboardWood)
 				.Include(g => g.FingerboardWood);
-
 
 			List<Guitar> tmpGuitars = new List<Guitar>();
 			if (string.IsNullOrEmpty(guitarType))
@@ -175,11 +174,22 @@ namespace GilbertMusicStore.Controllers
 
 		public ActionResult Details(int id = 0)
 		{
-			var guitar = _db.Guitars
-				.Include("Color")
-				.Include("BodyWood")
-				.Include("FretboardWood")
-				.Include("FingerboardWood")
+			GuitarList guitarList = (GuitarList)HttpContext.Application["GuitarList"];
+			if (guitarList != null &&
+				!guitarList.Contains(id))
+			{
+				System.Diagnostics.Trace.WriteLine(string.Format("Gilbert Music Store. New related guitar added: {0}.", id));
+				guitarList.Add(id);
+			}
+
+			var guitar =
+				_db.Guitars
+				.Include(g => g.Color)
+				.Include(g => g.BodyWood)
+				.Include(g => g.FretboardWood)
+				.Include(g => g.FretboardWood)
+				.Include(g => g.FingerboardWood)
+				.Include(g => g.RelatedGuitars)
 				.SingleOrDefault(g => g.Id == id);
 
 			if (guitar != null)

@@ -47,6 +47,15 @@
 		<div id="guitarMainImage">
 			<img src="@Model.Guitar.LargeMainImageUrl" alt="@Model.Guitar.Model" />
 		</div>
+		<div id="relatedGuitars">
+			Related guitars:
+			<ul>
+				@foreach (var relatedGuitar in Model.RelatedGuitars)
+				{
+					<li>@relatedGuitar.Model</li>
+				}
+			</ul>
+		</div>
 		<p class="buttonAddToCart">
 			@Html.ActionLink("Добавить в корзину", "AddToCart", "ShoppingCart", new { id = Model.Guitar.Id }, null)
 		</p>

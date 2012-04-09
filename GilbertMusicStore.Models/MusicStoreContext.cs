@@ -22,6 +22,7 @@ namespace GilbertMusicStore.Models
 		public DbSet<Cart> Carts { get; set; }
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<OrderDetail> OrderDetails { get; set; }
+		public DbSet<RelatedGuitar> RelatedGuitars { get; set; }
 		#endregion
 
 		#region Constructors

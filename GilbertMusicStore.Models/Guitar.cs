@@ -54,6 +54,8 @@ namespace GilbertMusicStore.Models
 
 		[Display(Name = "Цвет")]
 		public Color Color { get; set; }
+
+		public ICollection<RelatedGuitar> RelatedGuitars { get; set; }
 		#endregion
 
 		[RequiredEx]
@@ -99,6 +101,14 @@ namespace GilbertMusicStore.Models
 		[DataType(DataType.Currency)]
 		[Display(Name = "Цена")]
 		public decimal Price { get; set; }
+		#endregion
+
+		#region Constructors
+
+		public Guitar()
+		{
+			RelatedGuitars = new HashSet<RelatedGuitar>();
+		}
 		#endregion
 	}
 }
