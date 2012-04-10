@@ -3,8 +3,14 @@
 @model GilbertMusicStore.ViewModels.GuitarViewModel
 
 @{
-    ViewBag.Title = "Детали";
+	ViewBag.Title = "Детали";
 }
+
+<script type="text/javascript">
+	function DoOnLoad() {
+		window.location += "#descriptionTab";
+	}
+</script>
 
 <div class="guitarDescriptionContainer">
 	<div class="desriptionHeaderContainer">
@@ -31,30 +37,20 @@
 				</p>
 			</section>
 			<section id="reviewTab">
-				<h2><a href="#reviewTab">Отзывы</a></h2>
+				<h2><a href="#reviewTab">Похожие</a></h2>
 				<p>
-				@if (Model.Reviews != null)
-				{
-					foreach (GuitarReview review in Model.Reviews)
-					{
-						<strong>@review.DateCreated</strong><br />
-						@review.Content
-					}
-				}
+					Вместе с этой гитарой просматривались:
+					<ul>
+						@foreach (var relatedGuitar in Model.RelatedGuitars)
+						{
+							<li>@Html.ActionLink(relatedGuitar.Model, "Details", new { id = relatedGuitar.Id })</li>
+						}
+					</ul>
 				</p>
 			</section>
 		</article>
 		<div id="guitarMainImage">
 			<img src="@Model.Guitar.LargeMainImageUrl" alt="@Model.Guitar.Model" />
-		</div>
-		<div id="relatedGuitars">
-			Related guitars:
-			<ul>
-				@foreach (var relatedGuitar in Model.RelatedGuitars)
-				{
-					<li>@relatedGuitar.Model</li>
-				}
-			</ul>
 		</div>
 		<p class="buttonAddToCart">
 			@Html.ActionLink("Добавить в корзину", "AddToCart", "ShoppingCart", new { id = Model.Guitar.Id }, null)
