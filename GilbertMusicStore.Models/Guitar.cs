@@ -55,6 +55,7 @@ namespace GilbertMusicStore.Models
 		[Display(Name = "Цвет")]
 		public Color Color { get; set; }
 
+		[ForeignKey("Id")]
 		public ICollection<RelatedGuitar> RelatedGuitars { get; set; }
 		#endregion
 

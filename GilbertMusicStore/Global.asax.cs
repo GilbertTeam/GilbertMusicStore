@@ -68,7 +68,9 @@ namespace GilbertMusicStore
 
 						if (guitar != null)
 						{
-							foreach (int relatedGuitarId in guitarList.SkipWhile(index => index == guitarId))
+							var relatedGuitars = guitarList.Where(index => index != guitarId);
+
+							foreach (int relatedGuitarId in relatedGuitars)
 							{
 								RelatedGuitar relatedGuitar = guitar.RelatedGuitars.SingleOrDefault(g => g.GuitarId == relatedGuitarId);
 
