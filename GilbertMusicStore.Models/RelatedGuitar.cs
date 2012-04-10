@@ -19,7 +19,6 @@ namespace GilbertMusicStore.Models
 
 		public int Index { get; set; }
 
-		[ForeignKey("GuitarId")]
 		public virtual Guitar Guitar { get; set; }
 	}
 }

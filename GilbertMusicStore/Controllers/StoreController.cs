@@ -34,7 +34,28 @@ namespace GilbertMusicStore.Controllers
 				guitar.FretboardWood.Name.ToLower(),
 				guitar.FingerboardWood.Name.ToLower());
 
-			GuitarViewModel guitarViewModel = new GuitarViewModel(guitar, description, count, guitar.RelatedGuitars.Select(g => g.Guitar));
+			List<Guitar> relatedGuitars = new List<Guitar>();
+
+			if (guitar.RelatedGuitars.Count > 0)
+			{
+				var sortGuitars = guitar.RelatedGuitars.OrderByDescending(g => g.Index);
+				int sortGuitarsCount = sortGuitars.Count();
+
+				if (sortGuitarsCount >= 1)
+				{
+					relatedGuitars.Add(_db.Guitars.Find(sortGuitars.First().GuitarId));
+				}
+				if (sortGuitarsCount >= 2)
+				{
+					relatedGuitars.Add(_db.Guitars.Find(sortGuitars.ElementAt(1).GuitarId));
+				}
+				if (sortGuitarsCount >= 3)
+				{
+					relatedGuitars.Add(_db.Guitars.Find(sortGuitars.ElementAt(2).GuitarId));
+				}
+			}
+
+			GuitarViewModel guitarViewModel = new GuitarViewModel(guitar, description, count, relatedGuitars);
 
 			return guitarViewModel;
 		}

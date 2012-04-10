@@ -58,10 +58,12 @@ namespace GilbertMusicStore
 			if (guitarList != null &&
 				guitarList.Count > 0)
 			{
-				System.Diagnostics.Trace.WriteLine(string.Format("Gilbert Music Store. End of session. Count of related guitars: {0}", guitarList.Count));
+				System.Diagnostics.Trace.WriteLine(string.Format("Gilbert Music Store. End of session. Count of related guitars: {0}.", guitarList.Count));
 
 				using (MusicStoreContext context = new MusicStoreContext())
 				{
+					context.RelatedGuitars.Load();
+
 					foreach (int guitarId in guitarList)
 					{
 						Guitar guitar = context.Guitars.Find(guitarId);
@@ -76,10 +78,14 @@ namespace GilbertMusicStore
 
 								if (relatedGuitar != null)
 								{
+									System.Diagnostics.Trace.WriteLine(string.Format("Gilbert Music Store. End of session. Guitar: {0}. Increase index of related guitar: {1}.", guitarId, relatedGuitarId));
+
 									relatedGuitar.Index++;
 								}
 								else
 								{
+									System.Diagnostics.Trace.WriteLine(string.Format("Gilbert Music Store. End of session. Guitar: {0}. Added new related guitar: {1}.", guitarId, relatedGuitarId));
+
 									context.RelatedGuitars.Add(
 										new RelatedGuitar
 										{
@@ -92,9 +98,19 @@ namespace GilbertMusicStore
 						}
 					}
 
-					int addedGuitars = context.SaveChanges();
-					System.Diagnostics.Trace.WriteLine(string.Format("Gilbert Music Store. End of session. {0} guitars was added to DB.", addedGuitars));
-					System.Diagnostics.Trace.WriteLine(string.Format("Gilbert Music Store. End of session. Count of related guitars in DB: {0}", context.RelatedGuitars.Count()));
+					int affectedGuitars = 0;
+
+					try
+					{
+						affectedGuitars = context.SaveChanges();
+					}
+					catch (Exception exception)
+					{
+						System.Diagnostics.Trace.WriteLine(string.Format("Gilbert Music Store. End of session. Exception occured: {0}.", exception.Message));
+					}
+
+					System.Diagnostics.Trace.WriteLine(string.Format("Gilbert Music Store. End of session. Affected guitars: {0}.", affectedGuitars));
+					System.Diagnostics.Trace.WriteLine(string.Format("Gilbert Music Store. End of session. Count of related guitars in DB: {0}.", context.RelatedGuitars.Count()));
 				}
 			}
 			Application.UnLock();
