@@ -9,20 +9,13 @@ namespace GilbertMusicStore.Models.Attributes
 {
 	public class RequiredExAttribute : RequiredAttribute
 	{
-		#region Constructors
-
-		public RequiredExAttribute()
-		{
-			DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(RequiredExAttribute), typeof(RequiredAttribute));
-		}
-		#endregion
-
 		#region Methods
 
 		public override string FormatErrorMessage(string name)
 		{
 			return string.Format(Properties.Resources.RequiredErrorMessage, name);
 		}
+
 		#endregion
 	}
 }
